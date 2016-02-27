@@ -32,8 +32,16 @@ reserved = {
 	'while' : 'WHILE',
 }
 
-tokens = ['ID', 'COMMA', 'DOT', 'NUMBER', 'EQUALS', 'SEMICOLON', 'STRING_CONST',
-			'LEFT_PAR', 'RIGHT_PAR', 'ARITH_OP', 'BOOL_OP', 'UNARY_OP'] + list(reserved.values())
+tokens = [
+	'ID', 'COMMA',
+	'DOT', 'NUMBER',
+	'EQUALS', 'SEMICOLON',
+	'STRING_CONST',
+	'LEFT_PAR', 'RIGHT_PAR',
+	'ARITH_OP', 'BOOL_OP',
+	'UNARY_OP', 'LEFT_BRACE',
+	'RIGHT_BRACE'
+] + list(reserved.values())
 
 #Regular Expression rule
 
@@ -75,11 +83,19 @@ def t_STRING_CONST(t):
 	return t
 
 def t_LEFT_PAR(t):
-	r'[()]'
+	r'[(]'
 	return t
 
 def t_RIGHT_PAR(t):
-	r'[()]'
+	r'[)]'
+	return t
+
+def t_LEFT_BRACE(t):
+	r'[{]'
+	return t
+
+def t_RIGHT_BRACE(t):
+	r'[}]'
 	return t
 
 def t_ARITH_OP(t):

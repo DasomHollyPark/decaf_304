@@ -10,12 +10,11 @@ import ply.yacc as yacc
 
 #Start States
 def p_start(p):
-	'''start : method_decl
-	         | constructor_decl
-	         | field_decl
+	'''start : field_decl
+					 | constructor_decl
+	         | method_decl
 	         | literal
 	         | field_access'''
-	pass
 
 # field_decl ::= modifier var_decl
 def p_field_decl(p):
@@ -40,7 +39,8 @@ def p_var_decl(p):
 def p_type(p):
 	"""type : INT
 			| FLOAT 
-			| BOOLEAN""" 
+			| BOOLEAN
+			| ID"""
 
 ###variables ::= variable (, variable)*###
 
@@ -63,16 +63,21 @@ def p_variable(p):
 
 #method_decl ::= modifier (type | void) id (formals?) block
 def p_method_decl(p) :
-	'''method_decl : modifier type ID 
-	   method_decl : modifier type ID formals
-	   method_decl : modifier VOID ID 
-	   method_decl : modifier VOID ID formals
+	'''method_decl : modifier type ID LEFT_PAR RIGHT_PAR block
+	   method_decl : modifier type ID LEFT_PAR formals RIGHT_PAR block
+	   method_decl : modifier VOID ID LEFT_PAR RIGHT_PAR block
+	   method_decl : modifier VOID ID LEFT_PAR formals RIGHT_PAR block
+	'''
+
+def p_block(p):
+	'''
+		block : LEFT_BRACE RIGHT_BRACE
 	'''
 
 #constructor_decl ::= modifier id (formals) block
 def p_constructor_decl(p):
-	'''constructor_decl : modifier ID
-	   constructor_decl : modifier ID formals'''
+	'''constructor_decl : modifier ID LEFT_PAR RIGHT_PAR
+	   constructor_decl : modifier ID LEFT_PAR formals RIGHT_PAR'''
 
 #formals ::= formal_param (, formal_param)*
 def p_formals(p):
@@ -112,7 +117,7 @@ def p_lhs(p):
 def p_field_access(p):
 	'''field_access : primary DOT ID
 					| ID
-	'''	
+	'''
 
 def p_error(p):
 #    print("Syntax error in input")
