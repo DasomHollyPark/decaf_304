@@ -47,23 +47,27 @@ Rule 22    method_decl -> modifier type ID LEFT_PAR RIGHT_PAR block
 Rule 23    method_decl -> modifier type ID LEFT_PAR formals RIGHT_PAR block
 Rule 24    method_decl -> modifier VOID ID LEFT_PAR RIGHT_PAR block
 Rule 25    method_decl -> modifier VOID ID LEFT_PAR formals RIGHT_PAR block
-Rule 26    block -> LEFT_BRACE RIGHT_BRACE
-Rule 27    constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR
-Rule 28    constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR
-Rule 29    formals -> formal_param formal_param2
-Rule 30    formal_param2 -> <empty>
-Rule 31    formal_param2 -> COMMA formal_param formal_param2
-Rule 32    formal_param -> type variable
-Rule 33    literal -> STRING_CONST
-Rule 34    literal -> NULL
-Rule 35    literal -> TRUE
-Rule 36    literal -> FALSE
-Rule 37    primary -> literal
-Rule 38    primary -> THIS
-Rule 39    primary -> SUPER
-Rule 40    lhs -> field_access
-Rule 41    field_access -> primary DOT ID
-Rule 42    field_access -> ID
+Rule 26    block -> LEFT_BRACE stmts RIGHT_BRACE
+Rule 27    stmts -> stmt stmt2
+Rule 28    stmt -> SEMICOLON
+Rule 29    stmt2 -> stmts
+Rule 30    stmt2 -> <empty>
+Rule 31    constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR
+Rule 32    constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR
+Rule 33    formals -> formal_param formal_param2
+Rule 34    formal_param2 -> <empty>
+Rule 35    formal_param2 -> COMMA formal_param formal_param2
+Rule 36    formal_param -> type variable
+Rule 37    literal -> STRING_CONST
+Rule 38    literal -> NULL
+Rule 39    literal -> TRUE
+Rule 40    literal -> FALSE
+Rule 41    primary -> literal
+Rule 42    primary -> THIS
+Rule 43    primary -> SUPER
+Rule 44    lhs -> field_access
+Rule 45    field_access -> primary DOT ID
+Rule 46    field_access -> ID
 
 Terminals, with rules where they appear
 
@@ -72,35 +76,35 @@ BOOLEAN              : 16
 BOOL_OP              : 
 BREAK                : 
 CLASS                : 
-COMMA                : 20 31
+COMMA                : 20 35
 CONTINUE             : 
 DO                   : 
-DOT                  : 41
+DOT                  : 45
 ELSE                 : 
 EQUALS               : 
 EXTENDS              : 
-FALSE                : 36
+FALSE                : 40
 FLOAT                : 15
 FOR                  : 
-ID                   : 17 21 22 23 24 25 27 28 41 42
+ID                   : 17 21 22 23 24 25 31 32 45 46
 IF                   : 
 INT                  : 14
 LEFT_BRACE           : 26
-LEFT_PAR             : 22 23 24 25 27 28
+LEFT_PAR             : 22 23 24 25 31 32
 NEW                  : 
-NULL                 : 34
+NULL                 : 38
 NUMBER               : 
 PRIVATE              : 10 11
 PUBLIC               : 8 9
 RETURN               : 
 RIGHT_BRACE          : 26
-RIGHT_PAR            : 22 23 24 25 27 28
-SEMICOLON            : 13
+RIGHT_PAR            : 22 23 24 25 31 32
+SEMICOLON            : 13 28
 STATIC               : 9 11 12
-STRING_CONST         : 33
-SUPER                : 39
-THIS                 : 38
-TRUE                 : 35
+STRING_CONST         : 37
+SUPER                : 43
+THIS                 : 42
+TRUE                 : 39
 UNARY_OP             : 
 VOID                 : 24 25
 WHILE                : 
@@ -110,20 +114,23 @@ Nonterminals, with rules where they appear
 
 block                : 22 23 24 25
 constructor_decl     : 2
-field_access         : 5 40
+field_access         : 5 44
 field_decl           : 1
-formal_param         : 29 31
-formal_param2        : 29 31
-formals              : 23 25 28
+formal_param         : 33 35
+formal_param2        : 33 35
+formals              : 23 25 32
 lhs                  : 
-literal              : 4 37
+literal              : 4 41
 method_decl          : 3
-modifier             : 6 22 23 24 25 27 28
-primary              : 41
+modifier             : 6 22 23 24 25 31 32
+primary              : 45
 start                : 0
-type                 : 13 22 23 32
+stmt                 : 27
+stmt2                : 27
+stmts                : 26 29
+type                 : 13 22 23 36
 var_decl             : 6
-variable             : 18 20 32
+variable             : 18 20 36
 variable2            : 18 20
 variables            : 13
 
@@ -138,27 +145,27 @@ state 0
     (4) start -> . literal
     (5) start -> . field_access
     (6) field_decl -> . modifier var_decl
-    (27) constructor_decl -> . modifier ID LEFT_PAR RIGHT_PAR
-    (28) constructor_decl -> . modifier ID LEFT_PAR formals RIGHT_PAR
+    (31) constructor_decl -> . modifier ID LEFT_PAR RIGHT_PAR
+    (32) constructor_decl -> . modifier ID LEFT_PAR formals RIGHT_PAR
     (22) method_decl -> . modifier type ID LEFT_PAR RIGHT_PAR block
     (23) method_decl -> . modifier type ID LEFT_PAR formals RIGHT_PAR block
     (24) method_decl -> . modifier VOID ID LEFT_PAR RIGHT_PAR block
     (25) method_decl -> . modifier VOID ID LEFT_PAR formals RIGHT_PAR block
-    (33) literal -> . STRING_CONST
-    (34) literal -> . NULL
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (41) field_access -> . primary DOT ID
-    (42) field_access -> . ID
+    (37) literal -> . STRING_CONST
+    (38) literal -> . NULL
+    (39) literal -> . TRUE
+    (40) literal -> . FALSE
+    (45) field_access -> . primary DOT ID
+    (46) field_access -> . ID
     (7) modifier -> .
     (8) modifier -> . PUBLIC
     (9) modifier -> . PUBLIC STATIC
     (10) modifier -> . PRIVATE
     (11) modifier -> . PRIVATE STATIC
     (12) modifier -> . STATIC
-    (37) primary -> . literal
-    (38) primary -> . THIS
-    (39) primary -> . SUPER
+    (41) primary -> . literal
+    (42) primary -> . THIS
+    (43) primary -> . SUPER
 
   ! shift/reduce conflict for ID resolved as shift
     STRING_CONST    shift and go to state 6
@@ -196,7 +203,7 @@ state 1
 
 state 2
 
-    (41) field_access -> primary . DOT ID
+    (45) field_access -> primary . DOT ID
 
     DOT             shift and go to state 19
 
@@ -214,26 +221,26 @@ state 3
 
 state 4
 
-    (34) literal -> NULL .
+    (38) literal -> NULL .
 
-    $end            reduce using rule 34 (literal -> NULL .)
-    DOT             reduce using rule 34 (literal -> NULL .)
+    $end            reduce using rule 38 (literal -> NULL .)
+    DOT             reduce using rule 38 (literal -> NULL .)
 
 
 state 5
 
-    (35) literal -> TRUE .
+    (39) literal -> TRUE .
 
-    $end            reduce using rule 35 (literal -> TRUE .)
-    DOT             reduce using rule 35 (literal -> TRUE .)
+    $end            reduce using rule 39 (literal -> TRUE .)
+    DOT             reduce using rule 39 (literal -> TRUE .)
 
 
 state 6
 
-    (33) literal -> STRING_CONST .
+    (37) literal -> STRING_CONST .
 
-    $end            reduce using rule 33 (literal -> STRING_CONST .)
-    DOT             reduce using rule 33 (literal -> STRING_CONST .)
+    $end            reduce using rule 37 (literal -> STRING_CONST .)
+    DOT             reduce using rule 37 (literal -> STRING_CONST .)
 
 
 state 7
@@ -258,10 +265,10 @@ state 8
 state 9
 
     (4) start -> literal .
-    (37) primary -> literal .
+    (41) primary -> literal .
 
     $end            reduce using rule 4 (start -> literal .)
-    DOT             reduce using rule 37 (primary -> literal .)
+    DOT             reduce using rule 41 (primary -> literal .)
 
 
 state 10
@@ -273,24 +280,24 @@ state 10
 
 state 11
 
-    (42) field_access -> ID .
+    (46) field_access -> ID .
 
-    $end            reduce using rule 42 (field_access -> ID .)
+    $end            reduce using rule 46 (field_access -> ID .)
 
 
 state 12
 
-    (36) literal -> FALSE .
+    (40) literal -> FALSE .
 
-    $end            reduce using rule 36 (literal -> FALSE .)
-    DOT             reduce using rule 36 (literal -> FALSE .)
+    $end            reduce using rule 40 (literal -> FALSE .)
+    DOT             reduce using rule 40 (literal -> FALSE .)
 
 
 state 13
 
-    (38) primary -> THIS .
+    (42) primary -> THIS .
 
-    DOT             reduce using rule 38 (primary -> THIS .)
+    DOT             reduce using rule 42 (primary -> THIS .)
 
 
 state 14
@@ -310,8 +317,8 @@ state 15
 state 16
 
     (6) field_decl -> modifier . var_decl
-    (27) constructor_decl -> modifier . ID LEFT_PAR RIGHT_PAR
-    (28) constructor_decl -> modifier . ID LEFT_PAR formals RIGHT_PAR
+    (31) constructor_decl -> modifier . ID LEFT_PAR RIGHT_PAR
+    (32) constructor_decl -> modifier . ID LEFT_PAR formals RIGHT_PAR
     (22) method_decl -> modifier . type ID LEFT_PAR RIGHT_PAR block
     (23) method_decl -> modifier . type ID LEFT_PAR formals RIGHT_PAR block
     (24) method_decl -> modifier . VOID ID LEFT_PAR RIGHT_PAR block
@@ -333,9 +340,9 @@ state 16
 
 state 17
 
-    (39) primary -> SUPER .
+    (43) primary -> SUPER .
 
-    DOT             reduce using rule 39 (primary -> SUPER .)
+    DOT             reduce using rule 43 (primary -> SUPER .)
 
 
 state 18
@@ -353,7 +360,7 @@ state 18
 
 state 19
 
-    (41) field_access -> primary DOT . ID
+    (45) field_access -> primary DOT . ID
 
     ID              shift and go to state 29
 
@@ -420,8 +427,8 @@ state 26
 
 state 27
 
-    (27) constructor_decl -> modifier ID . LEFT_PAR RIGHT_PAR
-    (28) constructor_decl -> modifier ID . LEFT_PAR formals RIGHT_PAR
+    (31) constructor_decl -> modifier ID . LEFT_PAR RIGHT_PAR
+    (32) constructor_decl -> modifier ID . LEFT_PAR formals RIGHT_PAR
     (17) type -> ID .
 
     LEFT_PAR        shift and go to state 34
@@ -441,9 +448,9 @@ state 28
 
 state 29
 
-    (41) field_access -> primary DOT ID .
+    (45) field_access -> primary DOT ID .
 
-    $end            reduce using rule 41 (field_access -> primary DOT ID .)
+    $end            reduce using rule 45 (field_access -> primary DOT ID .)
 
 
 state 30
@@ -485,10 +492,10 @@ state 33
 
 state 34
 
-    (27) constructor_decl -> modifier ID LEFT_PAR . RIGHT_PAR
-    (28) constructor_decl -> modifier ID LEFT_PAR . formals RIGHT_PAR
-    (29) formals -> . formal_param formal_param2
-    (32) formal_param -> . type variable
+    (31) constructor_decl -> modifier ID LEFT_PAR . RIGHT_PAR
+    (32) constructor_decl -> modifier ID LEFT_PAR . formals RIGHT_PAR
+    (33) formals -> . formal_param formal_param2
+    (36) formal_param -> . type variable
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . BOOLEAN
@@ -508,8 +515,8 @@ state 35
 
     (24) method_decl -> modifier VOID ID LEFT_PAR . RIGHT_PAR block
     (25) method_decl -> modifier VOID ID LEFT_PAR . formals RIGHT_PAR block
-    (29) formals -> . formal_param formal_param2
-    (32) formal_param -> . type variable
+    (33) formals -> . formal_param formal_param2
+    (36) formal_param -> . type variable
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . BOOLEAN
@@ -552,8 +559,8 @@ state 39
 
     (22) method_decl -> modifier type ID LEFT_PAR . RIGHT_PAR block
     (23) method_decl -> modifier type ID LEFT_PAR . formals RIGHT_PAR block
-    (29) formals -> . formal_param formal_param2
-    (32) formal_param -> . type variable
+    (33) formals -> . formal_param formal_param2
+    (36) formal_param -> . type variable
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . BOOLEAN
@@ -571,25 +578,25 @@ state 39
 
 state 40
 
-    (29) formals -> formal_param . formal_param2
-    (30) formal_param2 -> .
-    (31) formal_param2 -> . COMMA formal_param formal_param2
+    (33) formals -> formal_param . formal_param2
+    (34) formal_param2 -> .
+    (35) formal_param2 -> . COMMA formal_param formal_param2
 
-    RIGHT_PAR       reduce using rule 30 (formal_param2 -> .)
+    RIGHT_PAR       reduce using rule 34 (formal_param2 -> .)
     COMMA           shift and go to state 52
 
     formal_param2                  shift and go to state 51
 
 state 41
 
-    (27) constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR .
+    (31) constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR .
 
-    $end            reduce using rule 27 (constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR .)
+    $end            reduce using rule 31 (constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR .)
 
 
 state 42
 
-    (32) formal_param -> type . variable
+    (36) formal_param -> type . variable
     (21) variable -> . ID
 
     ID              shift and go to state 48
@@ -605,7 +612,7 @@ state 43
 
 state 44
 
-    (28) constructor_decl -> modifier ID LEFT_PAR formals . RIGHT_PAR
+    (32) constructor_decl -> modifier ID LEFT_PAR formals . RIGHT_PAR
 
     RIGHT_PAR       shift and go to state 54
 
@@ -613,7 +620,7 @@ state 44
 state 45
 
     (24) method_decl -> modifier VOID ID LEFT_PAR RIGHT_PAR . block
-    (26) block -> . LEFT_BRACE RIGHT_BRACE
+    (26) block -> . LEFT_BRACE stmts RIGHT_BRACE
 
     LEFT_BRACE      shift and go to state 55
 
@@ -649,7 +656,7 @@ state 48
 state 49
 
     (22) method_decl -> modifier type ID LEFT_PAR RIGHT_PAR . block
-    (26) block -> . LEFT_BRACE RIGHT_BRACE
+    (26) block -> . LEFT_BRACE stmts RIGHT_BRACE
 
     LEFT_BRACE      shift and go to state 55
 
@@ -664,15 +671,15 @@ state 50
 
 state 51
 
-    (29) formals -> formal_param formal_param2 .
+    (33) formals -> formal_param formal_param2 .
 
-    RIGHT_PAR       reduce using rule 29 (formals -> formal_param formal_param2 .)
+    RIGHT_PAR       reduce using rule 33 (formals -> formal_param formal_param2 .)
 
 
 state 52
 
-    (31) formal_param2 -> COMMA . formal_param formal_param2
-    (32) formal_param -> . type variable
+    (35) formal_param2 -> COMMA . formal_param formal_param2
+    (36) formal_param -> . type variable
     (14) type -> . INT
     (15) type -> . FLOAT
     (16) type -> . BOOLEAN
@@ -688,25 +695,29 @@ state 52
 
 state 53
 
-    (32) formal_param -> type variable .
+    (36) formal_param -> type variable .
 
-    COMMA           reduce using rule 32 (formal_param -> type variable .)
-    RIGHT_PAR       reduce using rule 32 (formal_param -> type variable .)
+    COMMA           reduce using rule 36 (formal_param -> type variable .)
+    RIGHT_PAR       reduce using rule 36 (formal_param -> type variable .)
 
 
 state 54
 
-    (28) constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR .
+    (32) constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR .
 
-    $end            reduce using rule 28 (constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR .)
+    $end            reduce using rule 32 (constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR .)
 
 
 state 55
 
-    (26) block -> LEFT_BRACE . RIGHT_BRACE
+    (26) block -> LEFT_BRACE . stmts RIGHT_BRACE
+    (27) stmts -> . stmt stmt2
+    (28) stmt -> . SEMICOLON
 
-    RIGHT_BRACE     shift and go to state 62
+    SEMICOLON       shift and go to state 62
 
+    stmts                          shift and go to state 63
+    stmt                           shift and go to state 64
 
 state 56
 
@@ -718,11 +729,11 @@ state 56
 state 57
 
     (25) method_decl -> modifier VOID ID LEFT_PAR formals RIGHT_PAR . block
-    (26) block -> . LEFT_BRACE RIGHT_BRACE
+    (26) block -> . LEFT_BRACE stmts RIGHT_BRACE
 
     LEFT_BRACE      shift and go to state 55
 
-    block                          shift and go to state 63
+    block                          shift and go to state 65
 
 state 58
 
@@ -741,49 +752,93 @@ state 59
 state 60
 
     (23) method_decl -> modifier type ID LEFT_PAR formals RIGHT_PAR . block
-    (26) block -> . LEFT_BRACE RIGHT_BRACE
+    (26) block -> . LEFT_BRACE stmts RIGHT_BRACE
 
     LEFT_BRACE      shift and go to state 55
 
-    block                          shift and go to state 64
+    block                          shift and go to state 66
 
 state 61
 
-    (31) formal_param2 -> COMMA formal_param . formal_param2
-    (30) formal_param2 -> .
-    (31) formal_param2 -> . COMMA formal_param formal_param2
+    (35) formal_param2 -> COMMA formal_param . formal_param2
+    (34) formal_param2 -> .
+    (35) formal_param2 -> . COMMA formal_param formal_param2
 
-    RIGHT_PAR       reduce using rule 30 (formal_param2 -> .)
+    RIGHT_PAR       reduce using rule 34 (formal_param2 -> .)
     COMMA           shift and go to state 52
 
-    formal_param2                  shift and go to state 65
+    formal_param2                  shift and go to state 67
 
 state 62
 
-    (26) block -> LEFT_BRACE RIGHT_BRACE .
+    (28) stmt -> SEMICOLON .
 
-    $end            reduce using rule 26 (block -> LEFT_BRACE RIGHT_BRACE .)
+    SEMICOLON       reduce using rule 28 (stmt -> SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 28 (stmt -> SEMICOLON .)
 
 
 state 63
+
+    (26) block -> LEFT_BRACE stmts . RIGHT_BRACE
+
+    RIGHT_BRACE     shift and go to state 68
+
+
+state 64
+
+    (27) stmts -> stmt . stmt2
+    (29) stmt2 -> . stmts
+    (30) stmt2 -> .
+    (27) stmts -> . stmt stmt2
+    (28) stmt -> . SEMICOLON
+
+    RIGHT_BRACE     reduce using rule 30 (stmt2 -> .)
+    SEMICOLON       shift and go to state 62
+
+    stmts                          shift and go to state 69
+    stmt2                          shift and go to state 70
+    stmt                           shift and go to state 64
+
+state 65
 
     (25) method_decl -> modifier VOID ID LEFT_PAR formals RIGHT_PAR block .
 
     $end            reduce using rule 25 (method_decl -> modifier VOID ID LEFT_PAR formals RIGHT_PAR block .)
 
 
-state 64
+state 66
 
     (23) method_decl -> modifier type ID LEFT_PAR formals RIGHT_PAR block .
 
     $end            reduce using rule 23 (method_decl -> modifier type ID LEFT_PAR formals RIGHT_PAR block .)
 
 
-state 65
+state 67
 
-    (31) formal_param2 -> COMMA formal_param formal_param2 .
+    (35) formal_param2 -> COMMA formal_param formal_param2 .
 
-    RIGHT_PAR       reduce using rule 31 (formal_param2 -> COMMA formal_param formal_param2 .)
+    RIGHT_PAR       reduce using rule 35 (formal_param2 -> COMMA formal_param formal_param2 .)
+
+
+state 68
+
+    (26) block -> LEFT_BRACE stmts RIGHT_BRACE .
+
+    $end            reduce using rule 26 (block -> LEFT_BRACE stmts RIGHT_BRACE .)
+
+
+state 69
+
+    (29) stmt2 -> stmts .
+
+    RIGHT_BRACE     reduce using rule 29 (stmt2 -> stmts .)
+
+
+state 70
+
+    (27) stmts -> stmt stmt2 .
+
+    RIGHT_BRACE     reduce using rule 27 (stmts -> stmt stmt2 .)
 
 WARNING: 
 WARNING: Conflicts:

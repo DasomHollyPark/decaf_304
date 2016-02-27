@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = '89A57D9EE46E19123D33DE9F184F6703'
+_lr_signature = 'D8DDE7D292CADFAF76ED61DE32C8C398'
     
-_lr_action_items = {'VOID':([0,3,7,16,18,20,28,],[-7,-12,-10,23,-8,-11,-9,]),'RIGHT_BRACE':([55,],[62,]),'STATIC':([0,7,18,],[3,20,28,]),'LEFT_BRACE':([45,49,57,60,],[55,55,55,55,]),'NULL':([0,],[4,]),'TRUE':([0,],[5,]),'DOT':([2,4,5,6,9,12,13,17,],[19,-34,-35,-33,-37,-36,-38,-39,]),'STRING_CONST':([0,],[6,]),'SEMICOLON':([31,32,33,37,47,48,58,],[36,-19,-21,-18,-19,-21,-20,]),'PRIVATE':([0,],[7,]),'COMMA':([32,33,40,47,48,53,61,],[38,-21,52,38,-21,-32,52,]),'$end':([1,4,5,6,8,9,10,11,12,14,15,24,29,36,41,54,56,59,62,63,64,],[-2,-34,-35,-33,0,-4,-5,-42,-36,-1,-3,-6,-41,-13,-27,-28,-24,-22,-26,-25,-23,]),'RIGHT_PAR':([34,35,39,40,44,46,48,50,51,53,61,65,],[41,45,49,-30,54,57,-21,60,-29,-32,-30,-31,]),'ID':([0,3,7,16,18,19,20,21,22,23,25,26,27,28,34,35,38,39,42,43,52,],[11,-12,-10,27,-8,29,-11,-15,-14,30,-16,33,-17,-9,43,43,48,43,48,-17,43,]),'FALSE':([0,],[12,]),'INT':([0,3,7,16,18,20,28,34,35,39,52,],[-7,-12,-10,22,-8,-11,-9,22,22,22,22,]),'FLOAT':([0,3,7,16,18,20,28,34,35,39,52,],[-7,-12,-10,21,-8,-11,-9,21,21,21,21,]),'THIS':([0,],[13,]),'BOOLEAN':([0,3,7,16,18,20,28,34,35,39,52,],[-7,-12,-10,25,-8,-11,-9,25,25,25,25,]),'LEFT_PAR':([27,30,33,],[34,35,39,]),'SUPER':([0,],[17,]),'PUBLIC':([0,],[18,]),}
+_lr_action_items = {'VOID':([0,3,7,16,18,20,28,],[-7,-12,-10,23,-8,-11,-9,]),'RIGHT_BRACE':([62,63,64,69,70,],[-28,68,-30,-29,-27,]),'STATIC':([0,7,18,],[3,20,28,]),'LEFT_BRACE':([45,49,57,60,],[55,55,55,55,]),'NULL':([0,],[4,]),'TRUE':([0,],[5,]),'DOT':([2,4,5,6,9,12,13,17,],[19,-38,-39,-37,-41,-40,-42,-43,]),'STRING_CONST':([0,],[6,]),'SEMICOLON':([31,32,33,37,47,48,55,58,62,64,],[36,-19,-21,-18,-19,-21,62,-20,-28,62,]),'PRIVATE':([0,],[7,]),'COMMA':([32,33,40,47,48,53,61,],[38,-21,52,38,-21,-36,52,]),'$end':([1,4,5,6,8,9,10,11,12,14,15,24,29,36,41,54,56,59,65,66,68,],[-2,-38,-39,-37,0,-4,-5,-46,-40,-1,-3,-6,-45,-13,-31,-32,-24,-22,-25,-23,-26,]),'RIGHT_PAR':([34,35,39,40,44,46,48,50,51,53,61,67,],[41,45,49,-34,54,57,-21,60,-33,-36,-34,-35,]),'ID':([0,3,7,16,18,19,20,21,22,23,25,26,27,28,34,35,38,39,42,43,52,],[11,-12,-10,27,-8,29,-11,-15,-14,30,-16,33,-17,-9,43,43,48,43,48,-17,43,]),'FALSE':([0,],[12,]),'INT':([0,3,7,16,18,20,28,34,35,39,52,],[-7,-12,-10,22,-8,-11,-9,22,22,22,22,]),'FLOAT':([0,3,7,16,18,20,28,34,35,39,52,],[-7,-12,-10,21,-8,-11,-9,21,21,21,21,]),'THIS':([0,],[13,]),'BOOLEAN':([0,3,7,16,18,20,28,34,35,39,52,],[-7,-12,-10,25,-8,-11,-9,25,25,25,25,]),'LEFT_PAR':([27,30,33,],[34,35,39,]),'SUPER':([0,],[17,]),'PUBLIC':([0,],[18,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'field_access':([0,],[10,]),'variable2':([32,47,],[37,58,]),'field_decl':([0,],[14,]),'variables':([26,],[31,]),'constructor_decl':([0,],[1,]),'method_decl':([0,],[15,]),'var_decl':([16,],[24,]),'primary':([0,],[2,]),'start':([0,],[8,]),'literal':([0,],[9,]),'formal_param':([34,35,39,52,],[40,40,40,61,]),'variable':([26,38,42,],[32,47,53,]),'formal_param2':([40,61,],[51,65,]),'modifier':([0,],[16,]),'type':([16,34,35,39,52,],[26,42,42,42,42,]),'block':([45,49,57,60,],[56,59,63,64,]),'formals':([34,35,39,],[44,46,50,]),}
+_lr_goto_items = {'field_access':([0,],[10,]),'variable2':([32,47,],[37,58,]),'stmts':([55,64,],[63,69,]),'field_decl':([0,],[14,]),'variables':([26,],[31,]),'constructor_decl':([0,],[1,]),'method_decl':([0,],[15,]),'var_decl':([16,],[24,]),'primary':([0,],[2,]),'start':([0,],[8,]),'literal':([0,],[9,]),'formal_param':([34,35,39,52,],[40,40,40,61,]),'stmt':([55,64,],[64,64,]),'stmt2':([64,],[70,]),'variable':([26,38,42,],[32,47,53,]),'formal_param2':([40,61,],[51,67,]),'modifier':([0,],[16,]),'type':([16,34,35,39,52,],[26,42,42,42,42,]),'block':([45,49,57,60,],[56,59,65,66,]),'formals':([34,35,39,],[44,46,50,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -51,21 +51,25 @@ _lr_productions = [
   ('method_decl -> modifier type ID LEFT_PAR formals RIGHT_PAR block','method_decl',7,'p_method_decl','decafparser.py',67),
   ('method_decl -> modifier VOID ID LEFT_PAR RIGHT_PAR block','method_decl',6,'p_method_decl','decafparser.py',68),
   ('method_decl -> modifier VOID ID LEFT_PAR formals RIGHT_PAR block','method_decl',7,'p_method_decl','decafparser.py',69),
-  ('block -> LEFT_BRACE RIGHT_BRACE','block',2,'p_block','decafparser.py',74),
-  ('constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR','constructor_decl',4,'p_constructor_decl','decafparser.py',79),
-  ('constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR','constructor_decl',5,'p_constructor_decl','decafparser.py',80),
-  ('formals -> formal_param formal_param2','formals',2,'p_formals','decafparser.py',84),
-  ('formal_param2 -> <empty>','formal_param2',0,'p_formal_param2','decafparser.py',87),
-  ('formal_param2 -> COMMA formal_param formal_param2','formal_param2',3,'p_formal_param2','decafparser.py',88),
-  ('formal_param -> type variable','formal_param',2,'p_formal_param','decafparser.py',92),
-  ('literal -> STRING_CONST','literal',1,'p_literal','decafparser.py',101),
-  ('literal -> NULL','literal',1,'p_literal','decafparser.py',102),
-  ('literal -> TRUE','literal',1,'p_literal','decafparser.py',103),
-  ('literal -> FALSE','literal',1,'p_literal','decafparser.py',104),
-  ('primary -> literal','primary',1,'p_primary','decafparser.py',108),
-  ('primary -> THIS','primary',1,'p_primary','decafparser.py',109),
-  ('primary -> SUPER','primary',1,'p_primary','decafparser.py',110),
-  ('lhs -> field_access','lhs',1,'p_lhs','decafparser.py',114),
-  ('field_access -> primary DOT ID','field_access',3,'p_field_access','decafparser.py',118),
-  ('field_access -> ID','field_access',1,'p_field_access','decafparser.py',119),
+  ('block -> LEFT_BRACE stmts RIGHT_BRACE','block',3,'p_block','decafparser.py',74),
+  ('stmts -> stmt stmt2','stmts',2,'p_stmts','decafparser.py',79),
+  ('stmt -> SEMICOLON','stmt',1,'p_stmt','decafparser.py',84),
+  ('stmt2 -> stmts','stmt2',1,'p_stmt2','decafparser.py',89),
+  ('stmt2 -> <empty>','stmt2',0,'p_stmt2','decafparser.py',90),
+  ('constructor_decl -> modifier ID LEFT_PAR RIGHT_PAR','constructor_decl',4,'p_constructor_decl','decafparser.py',95),
+  ('constructor_decl -> modifier ID LEFT_PAR formals RIGHT_PAR','constructor_decl',5,'p_constructor_decl','decafparser.py',96),
+  ('formals -> formal_param formal_param2','formals',2,'p_formals','decafparser.py',100),
+  ('formal_param2 -> <empty>','formal_param2',0,'p_formal_param2','decafparser.py',103),
+  ('formal_param2 -> COMMA formal_param formal_param2','formal_param2',3,'p_formal_param2','decafparser.py',104),
+  ('formal_param -> type variable','formal_param',2,'p_formal_param','decafparser.py',108),
+  ('literal -> STRING_CONST','literal',1,'p_literal','decafparser.py',117),
+  ('literal -> NULL','literal',1,'p_literal','decafparser.py',118),
+  ('literal -> TRUE','literal',1,'p_literal','decafparser.py',119),
+  ('literal -> FALSE','literal',1,'p_literal','decafparser.py',120),
+  ('primary -> literal','primary',1,'p_primary','decafparser.py',124),
+  ('primary -> THIS','primary',1,'p_primary','decafparser.py',125),
+  ('primary -> SUPER','primary',1,'p_primary','decafparser.py',126),
+  ('lhs -> field_access','lhs',1,'p_lhs','decafparser.py',130),
+  ('field_access -> primary DOT ID','field_access',3,'p_field_access','decafparser.py',134),
+  ('field_access -> ID','field_access',1,'p_field_access','decafparser.py',135),
 ]

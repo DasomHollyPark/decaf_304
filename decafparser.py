@@ -71,7 +71,23 @@ def p_method_decl(p) :
 
 def p_block(p):
 	'''
-		block : LEFT_BRACE RIGHT_BRACE
+		block : LEFT_BRACE stmts RIGHT_BRACE
+	'''
+
+def p_stmts(p):
+	'''
+		stmts : stmt stmt2
+	'''
+
+def p_stmt(p):
+	'''
+		stmt : SEMICOLON
+	'''
+
+def p_stmt2(p):
+	'''
+		stmt2 : stmts
+		stmt2 : 
 	'''
 
 #constructor_decl ::= modifier id (formals) block
