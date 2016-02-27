@@ -99,7 +99,7 @@ def t_RIGHT_BRACE(t):
 	return t
 
 def t_ARITH_OP(t):
-	r'[+||-||*||/]'
+	r'[(+|-|*|/)]'
 	return t
 
 def t_BOOL_OP(t):
