@@ -8,7 +8,7 @@ import ply.yacc as yacc
 #########################################################
 
 
-
+#Start States
 def p_start(p):
 	'''start : method_decl
 	         | constructor_decl
@@ -17,10 +17,11 @@ def p_start(p):
 	         | field_access'''
 	pass
 
+# field_decl ::= modifier var_decl
 def p_field_decl(p):
 	'''field_decl : modifier var_decl'''
 	
-
+#modifier ::= (public | private)? (static)?
 def p_modifier(p):
 	'''modifier : 
        modifier : PUBLIC
@@ -30,7 +31,6 @@ def p_modifier(p):
        modifier : STATIC
 	'''
 
-	
 #var_decl ::= type variables;
 def p_var_decl(p):
 	'var_decl : type variables SEMICOLON'
@@ -41,13 +41,12 @@ def p_type(p):
 	"""type : INT
 			| FLOAT 
 			| BOOLEAN""" 
-	p[0] = p[1]
 
 ###variables ::= variable (, variable)*###
+
 #Variables -> variable variable2
 def p_variables(p):
 	'variables : variable variable2'
-	p[0] = p[1]
 
 #variable2 -> E | , variable variable2
 def p_variable2(p):
@@ -57,15 +56,12 @@ def p_variable2(p):
 # variable ::= id
 def p_variable(p):
 	'variable : ID'
-	p[0] = p[1]
-
 
 ############################################################################
 ###################<METHODS AND CONSTRUCTORS DECLARATION>###################
 ############################################################################
 
 #method_decl ::= modifier (type | void) id (formals?) block
-
 def p_method_decl(p) :
 	'''method_decl : modifier type ID 
 	   method_decl : modifier type ID formals
@@ -78,13 +74,10 @@ def p_constructor_decl(p):
 	'''constructor_decl : modifier ID
 	   constructor_decl : modifier ID formals'''
 
-
-
 #formals ::= formal_param (, formal_param)*
 def p_formals(p):
 	'formals : formal_param formal_param2'
 	
-
 def p_formal_param2(p):
 	'''formal_param2 : 
 	   formal_param2 : COMMA formal_param formal_param2'''
@@ -98,18 +91,24 @@ def p_formal_param(p):
 ###################<EXPRESSIONS>###################
 ###################################################
 
-
+#literal ::= float_const | string_const | null | true | false
 def p_literal(p):
 	'''literal : STRING_CONST 
 			   | NULL
 		       | TRUE
 		       | FALSE'''
 
+#primary ::= literal | this | super | (expr) | new id (arguments?) | lhs | method_invocation
 def p_primary(p):
 	'''primary : literal
 			   | THIS
 			   | SUPER'''
 
+#lhs ::= field_access 
+def p_lhs(p):
+	'lhs : field_access'
+
+#field_access ::= primary.ID | ID
 def p_field_access(p):
 	'''field_access : primary DOT ID
 					| ID
