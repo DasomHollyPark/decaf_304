@@ -31,7 +31,7 @@ def p_class_decl(p):
 	'''
 		class_decl : CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
 	'''
-	
+
 # extends?
 def p_extends_opt(p):
 	'''
@@ -45,12 +45,14 @@ def p_extends(p):
 		extends : EXTENDS ID
 	'''
 
+# class_body_decl+
 def p_class_body_decl_plus(p):
 	'''
 		class_body_decl_plus : class_body_decl class_body_decl_plus
 		class_body_decl_plus : class_body_decl
 	'''
 
+# class_body_decl
 def p_class_body_decl(p):
 	'''
 		class_body_decl : field_decl
@@ -62,6 +64,7 @@ def p_class_body_decl(p):
 ###################### FIELDS ##########################
 ########################################################
 
+# field_decl ::= modifier var_decl
 def p_field_decl(p):
 	'''
 		field_decl : modifier var_decl
@@ -77,6 +80,7 @@ def p_modifier(p):
 		modifier : STATIC
 	'''
 
+# var_decl ::= type variables ;
 def p_var_decl(p):
 	'''
 		var_decl : type variables SEMICOLON
@@ -90,17 +94,20 @@ def p_type(p):
 		type : ID
 	'''
 
+# variables ::= variable (, variable)*
 def p_variables(p):
 	'''
 		variables : variable more_variables
 	'''
 
+# (, variables)*
 def p_more_variables(p):
 	'''
 		more_variables : empty
 		more_variables : COMMA variable more_variables
 	'''
 
+# variable ::= id ([])*
 def p_variable(p):
 	'''
 		variable : ID array_dim_star
