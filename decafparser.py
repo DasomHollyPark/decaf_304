@@ -16,32 +16,43 @@ def p_empty(p):
 #################### START STATE #######################
 ########################################################
 
+# Start state
 def p_start(p):
 	'''
-		start : class_decl_star
+		start : program
 	'''
 
 ########################################################
 #################### CLASS DECL ########################
 ########################################################
 
+# program ::= class_decl*
+def p_program(p):
+	'''
+		program : class_decl_star
+	'''
+
+# class_decl*
 def p_class_decl_star(p):
 	'''
 		class_decl_star : empty
 		class_decl_star : class_decl class_decl_star
 	'''
 
+# class_decl ::= class id (extends id)? { class_body_decl+ }
 def p_class_decl(p):
 	'''
 		class_decl : CLASS ID extends LEFT_BRACE class_body_decl_plus RIGHT_BRACE
 	'''
 
+# extends?
 def p_extends_opt(p):
 	'''
 		extends_opt : empty
 		extends_opt : extends
 	'''
 
+# extends ::= EXTENDS ID (not mentioned in pdf)
 def p_extends(p):
 	'''
 		extends : EXTENDS ID
@@ -311,6 +322,26 @@ def p_stmt_expr(p):
 		stmt_expr : assign
 		stmt_expr : method_invocation
 	'''
+
+def p_stmt_expr_opt(p):
+	'''
+		stmt_expr_opt : empty
+		stmt_expr_opt : stmt_expr
+	'''
+
+def p_expr_opt(p):
+	'''
+		expr_opt : empty
+		expr_opt : expr
+	'''
+
+########################################################
+####################### ERROR ##########################
+########################################################
+
+def p_error(p):
+#    print("Syntax error in input")
+    print("Syntax error at '%s'" % repr(p))
 
 ########################################################
 ###################### PARSER ##########################
