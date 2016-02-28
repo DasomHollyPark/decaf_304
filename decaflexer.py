@@ -41,8 +41,7 @@ tokens = [
 	'LEFT_BRACE', 'RIGHT_BRACE',
 	'LEFT_BRACKET', 'RIGHT_BRACKET',
 	'PLUS_PLUS', 'MINUS_MINUS',
-	'ARITH_OP', 'BOOL_OP', 'UNARY_OP',
-	'PLUS', 'MINUS', 'TIMES', 'DIVIDED_BY'
+	'ARITH_OP', 'BOOL_OP', 'UNARY_OP'
 ] + list(reserved.values())
 
 #Regular Expression rule

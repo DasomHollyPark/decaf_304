@@ -3,235 +3,4101 @@ Created by PLY version 3.8 (http://www.dabeaz.com/ply)
 Unused terminals:
 
     DO
-    MINUS
-    DIVIDED_BY
-    PLUS
-    TIMES
 
 Grammar
 
-Rule 0     S' -> empty
-Rule 1     empty -> <empty>
-Rule 2     start -> program
-Rule 3     program -> class_decl_star
-Rule 4     class_decl_star -> empty
-Rule 5     class_decl_star -> class_decl class_decl_star
-Rule 6     class_decl -> CLASS ID extends LEFT_BRACE class_body_decl_plus RIGHT_BRACE
-Rule 7     extends_opt -> empty
-Rule 8     extends_opt -> extends
-Rule 9     extends -> EXTENDS ID
-Rule 10    class_body_decl_plus -> class_body_decl class_body_decl_plus
-Rule 11    class_body_decl_plus -> class_body_decl
-Rule 12    class_body_decl -> field_decl
-Rule 13    class_body_decl -> method_decl
-Rule 14    class_body_decl -> constructor_decl
-Rule 15    field_decl -> modifier var_decl
-Rule 16    modifier -> empty
-Rule 17    modifier -> PUBLIC
-Rule 18    modifier -> PRIVATE
-Rule 19    modifier -> PUBLIC STATIC
-Rule 20    modifier -> PRIVATE STATIC
-Rule 21    modifier -> STATIC
-Rule 22    var_decl -> type variables SEMICOLON
-Rule 23    type -> INT
-Rule 24    type -> FLOAT
-Rule 25    type -> BOOLEAN
-Rule 26    type -> ID
-Rule 27    variables -> variable more_variables
-Rule 28    more_variables -> empty
-Rule 29    more_variables -> COMMA variable more_variables
-Rule 30    variable -> ID array_dim_star
-Rule 31    array_dim_star -> empty
-Rule 32    array_dim_star -> array_dim array_dim_star
-Rule 33    array_dim -> LEFT_BRACKET RIGHT_BRACKET
-Rule 34    method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block
-Rule 35    type_or_void -> type
-Rule 36    type_or_void -> VOID
-Rule 37    constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block
-Rule 38    formals_opt -> empty
-Rule 39    formals_opt -> formals
-Rule 40    formals -> formal_param more_formals
-Rule 41    more_formals -> empty
-Rule 42    more_formals -> COMMA formal_param more_formals
-Rule 43    formal_param -> type variable
-Rule 44    block -> LEFT_BRACE stmt_star RIGHT_BRACE
-Rule 45    stmt_star -> empty
-Rule 46    stmt_star -> stmt stmt_star
-Rule 47    stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt
-Rule 48    stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt
-Rule 49    stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
-Rule 50    stmt -> RETURN expr_opt SEMICOLON
-Rule 51    stmt -> stmt_expr SEMICOLON
-Rule 52    stmt -> BREAK SEMICOLON
-Rule 53    stmt -> CONTINUE SEMICOLON
-Rule 54    stmt -> block
-Rule 55    stmt -> var_decl
-Rule 56    stmt -> SEMICOLON
-Rule 57    else_opt -> empty
-Rule 58    else_opt -> ELSE stmt
-Rule 59    literal -> INT_CONST
-Rule 60    literal -> FLOAT_CONST
-Rule 61    literal -> STRING_CONST
-Rule 62    literal -> NULL
-Rule 63    literal -> TRUE
-Rule 64    literal -> FALSE
-Rule 65    primary -> literal
-Rule 66    primary -> THIS
-Rule 67    primary -> SUPER
-Rule 68    primary -> LEFT_PAR expr RIGHT_PAR
-Rule 69    primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR
-Rule 70    primary -> lhs
-Rule 71    primary -> method_invocation
-Rule 72    arguments_opt -> empty
-Rule 73    arguments_opt -> arguments
-Rule 74    arguments -> expr more_expr
-Rule 75    more_expr -> empty
-Rule 76    more_expr -> COMMA expr more_expr
-Rule 77    lhs -> field_access
-Rule 78    lhs -> array_access
-Rule 79    field_access -> primary DOT ID
-Rule 80    field_access -> ID
-Rule 81    array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET
-Rule 82    method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR
-Rule 83    expr -> primary
-Rule 84    expr -> assign
-Rule 85    expr -> new_array
-Rule 86    expr -> expr ARITH_OP expr
-Rule 87    expr -> expr BOOL_OP expr
-Rule 88    expr -> UNARY_OP expr
-Rule 89    assign -> lhs EQUALS expr
-Rule 90    assign -> lhs PLUS_PLUS
-Rule 91    assign -> PLUS_PLUS lhs
-Rule 92    assign -> lhs MINUS_MINUS
-Rule 93    assign -> MINUS_MINUS lhs
-Rule 94    new_array -> NEW type array_expr_plus
-Rule 95    array_expr_plus -> array_expr array_expr_plus
-Rule 96    array_expr_plus -> array_expr
-Rule 97    array_expr -> LEFT_BRACKET expr RIGHT_BRACKET
-Rule 98    array_empty_star -> empty
-Rule 99    array_empty_star -> array_empty array_empty_star
-Rule 100   array_empty -> LEFT_BRACKET RIGHT_BRACKET
-Rule 101   stmt_expr -> assign
-Rule 102   stmt_expr -> method_invocation
-Rule 103   stmt_expr_opt -> empty
-Rule 104   stmt_expr_opt -> stmt_expr
-Rule 105   expr_opt -> empty
-Rule 106   expr_opt -> expr
+Rule 0     S' -> program
+Rule 1     program -> class_decl_star
+Rule 2     empty -> <empty>
+Rule 3     class_decl_star -> empty
+Rule 4     class_decl_star -> class_decl class_decl_star
+Rule 5     class_decl -> CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
+Rule 6     extends_opt -> empty
+Rule 7     extends_opt -> extends
+Rule 8     extends -> EXTENDS ID
+Rule 9     class_body_decl_plus -> class_body_decl class_body_decl_plus
+Rule 10    class_body_decl_plus -> class_body_decl
+Rule 11    class_body_decl -> field_decl
+Rule 12    class_body_decl -> method_decl
+Rule 13    class_body_decl -> constructor_decl
+Rule 14    field_decl -> modifier var_decl
+Rule 15    modifier -> empty
+Rule 16    modifier -> PUBLIC
+Rule 17    modifier -> PRIVATE
+Rule 18    modifier -> PUBLIC STATIC
+Rule 19    modifier -> PRIVATE STATIC
+Rule 20    modifier -> STATIC
+Rule 21    var_decl -> type variables SEMICOLON
+Rule 22    type -> INT
+Rule 23    type -> FLOAT
+Rule 24    type -> BOOLEAN
+Rule 25    type -> ID
+Rule 26    variables -> variable more_variables
+Rule 27    more_variables -> empty
+Rule 28    more_variables -> COMMA variable more_variables
+Rule 29    variable -> ID array_dim_star
+Rule 30    array_dim_star -> empty
+Rule 31    array_dim_star -> array_dim array_dim_star
+Rule 32    array_dim -> LEFT_BRACKET RIGHT_BRACKET
+Rule 33    method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block
+Rule 34    type_or_void -> type
+Rule 35    type_or_void -> VOID
+Rule 36    constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block
+Rule 37    formals_opt -> empty
+Rule 38    formals_opt -> formals
+Rule 39    formals -> formal_param more_formals
+Rule 40    more_formals -> empty
+Rule 41    more_formals -> COMMA formal_param more_formals
+Rule 42    formal_param -> type variable
+Rule 43    block -> LEFT_BRACE stmt_star RIGHT_BRACE
+Rule 44    stmt_star -> empty
+Rule 45    stmt_star -> stmt stmt_star
+Rule 46    stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+Rule 47    stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt
+Rule 48    stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+Rule 49    stmt -> RETURN expr_opt SEMICOLON
+Rule 50    stmt -> stmt_expr SEMICOLON
+Rule 51    stmt -> BREAK SEMICOLON
+Rule 52    stmt -> CONTINUE SEMICOLON
+Rule 53    stmt -> block
+Rule 54    stmt -> var_decl
+Rule 55    stmt -> SEMICOLON
+Rule 56    else_opt -> empty
+Rule 57    else_opt -> ELSE stmt
+Rule 58    literal -> INT_CONST
+Rule 59    literal -> FLOAT_CONST
+Rule 60    literal -> STRING_CONST
+Rule 61    literal -> NULL
+Rule 62    literal -> TRUE
+Rule 63    literal -> FALSE
+Rule 64    primary -> literal
+Rule 65    primary -> THIS
+Rule 66    primary -> SUPER
+Rule 67    primary -> LEFT_PAR expr RIGHT_PAR
+Rule 68    primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+Rule 69    primary -> lhs
+Rule 70    primary -> method_invocation
+Rule 71    arguments_opt -> empty
+Rule 72    arguments_opt -> arguments
+Rule 73    arguments -> expr more_expr
+Rule 74    more_expr -> empty
+Rule 75    more_expr -> COMMA expr more_expr
+Rule 76    lhs -> field_access
+Rule 77    lhs -> array_access
+Rule 78    field_access -> primary DOT ID
+Rule 79    field_access -> ID
+Rule 80    array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET
+Rule 81    method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR
+Rule 82    expr -> primary
+Rule 83    expr -> assign
+Rule 84    expr -> new_array
+Rule 85    expr -> expr ARITH_OP expr
+Rule 86    expr -> expr BOOL_OP expr
+Rule 87    expr -> UNARY_OP expr
+Rule 88    assign -> lhs EQUALS expr
+Rule 89    assign -> lhs PLUS_PLUS
+Rule 90    assign -> PLUS_PLUS lhs
+Rule 91    assign -> lhs MINUS_MINUS
+Rule 92    assign -> MINUS_MINUS lhs
+Rule 93    new_array -> NEW type array_expr_plus array_empty_star
+Rule 94    array_expr_plus -> array_expr array_expr_plus
+Rule 95    array_expr_plus -> array_expr
+Rule 96    array_expr -> LEFT_BRACKET expr RIGHT_BRACKET
+Rule 97    array_empty_star -> empty
+Rule 98    array_empty_star -> array_empty array_empty_star
+Rule 99    array_empty -> LEFT_BRACKET RIGHT_BRACKET
+Rule 100   stmt_expr -> assign
+Rule 101   stmt_expr -> method_invocation
+Rule 102   stmt_expr_opt -> empty
+Rule 103   stmt_expr_opt -> stmt_expr
+Rule 104   expr_opt -> empty
+Rule 105   expr_opt -> expr
 
 Terminals, with rules where they appear
 
-ARITH_OP             : 86
-BOOLEAN              : 25
-BOOL_OP              : 87
-BREAK                : 52
-CLASS                : 6
-COMMA                : 29 42 76
-CONTINUE             : 53
-DIVIDED_BY           : 
+ARITH_OP             : 85
+BOOLEAN              : 24
+BOOL_OP              : 86
+BREAK                : 51
+CLASS                : 5
+COMMA                : 28 41 75
+CONTINUE             : 52
 DO                   : 
-DOT                  : 79
-ELSE                 : 58
-EQUALS               : 89
-EXTENDS              : 9
-FALSE                : 64
-FLOAT                : 24
-FLOAT_CONST          : 60
-FOR                  : 49
-ID                   : 6 9 26 30 34 37 69 79 80
-IF                   : 47
-INT                  : 23
-INT_CONST            : 59
-LEFT_BRACE           : 6 44
-LEFT_BRACKET         : 33 81 97 100
-LEFT_PAR             : 34 37 47 48 49 68 69 82
-MINUS                : 
-MINUS_MINUS          : 92 93
-NEW                  : 69 94
-NULL                 : 62
-PLUS                 : 
-PLUS_PLUS            : 90 91
-PRIVATE              : 18 20
-PUBLIC               : 17 19
-RETURN               : 50
-RIGHT_BRACE          : 6 44
-RIGHT_BRACKET        : 33 81 97 100
-RIGHT_PAR            : 34 37 47 48 49 68 69 82
-SEMICOLON            : 22 49 49 50 51 52 53 56
-STATIC               : 19 20 21
-STRING_CONST         : 61
-SUPER                : 67
-THIS                 : 66
-TIMES                : 
-TRUE                 : 63
-UNARY_OP             : 88
-VOID                 : 36
-WHILE                : 48
+DOT                  : 78
+ELSE                 : 57
+EQUALS               : 88
+EXTENDS              : 8
+FALSE                : 63
+FLOAT                : 23
+FLOAT_CONST          : 59
+FOR                  : 48
+ID                   : 5 8 25 29 33 36 68 78 79
+IF                   : 46
+INT                  : 22
+INT_CONST            : 58
+LEFT_BRACE           : 5 43
+LEFT_BRACKET         : 32 80 96 99
+LEFT_PAR             : 33 36 46 47 48 67 68 81
+MINUS_MINUS          : 91 92
+NEW                  : 68 93
+NULL                 : 61
+PLUS_PLUS            : 89 90
+PRIVATE              : 17 19
+PUBLIC               : 16 18
+RETURN               : 49
+RIGHT_BRACE          : 5 43
+RIGHT_BRACKET        : 32 80 96 99
+RIGHT_PAR            : 33 36 46 47 48 67 68 81
+SEMICOLON            : 21 48 48 49 50 51 52 55
+STATIC               : 18 19 20
+STRING_CONST         : 60
+SUPER                : 66
+THIS                 : 65
+TRUE                 : 62
+UNARY_OP             : 87
+VOID                 : 35
+WHILE                : 47
 error                : 
 
 Nonterminals, with rules where they appear
 
-arguments            : 73
-arguments_opt        : 69 82
-array_access         : 78
-array_dim            : 32
-array_dim_star       : 30 32
-array_empty          : 99
-array_empty_star     : 99
-array_expr           : 95 96
-array_expr_plus      : 94 95
-assign               : 84 101
-block                : 34 37 54
-class_body_decl      : 10 11
-class_body_decl_plus : 6 10
-class_decl           : 5
-class_decl_star      : 3 5
-constructor_decl     : 14
-else_opt             : 47
-empty                : 4 7 16 28 31 38 41 45 57 72 75 98 103 105 0
-expr                 : 47 48 68 74 76 81 86 86 87 87 88 89 97 106
-expr_opt             : 49 50
-extends              : 6 8
-extends_opt          : 
-field_access         : 77 82
-field_decl           : 12
-formal_param         : 40 42
-formals              : 39
-formals_opt          : 34 37
-lhs                  : 70 89 90 91 92 93
-literal              : 65
-method_decl          : 13
-method_invocation    : 71 102
-modifier             : 15 34 37
-more_expr            : 74 76
-more_formals         : 40 42
-more_variables       : 27 29
-new_array            : 85
-primary              : 79 81 83
-program              : 2
-start                : 
-stmt                 : 46 47 48 49 58
-stmt_expr            : 51 104
-stmt_expr_opt        : 49 49
-stmt_star            : 44 46
-type                 : 22 35 43 94
-type_or_void         : 34
-var_decl             : 15 55
-variable             : 27 29 43
-variables            : 22
+arguments            : 72
+arguments_opt        : 68 81
+array_access         : 77
+array_dim            : 31
+array_dim_star       : 29 31
+array_empty          : 98
+array_empty_star     : 93 98
+array_expr           : 94 95
+array_expr_plus      : 93 94
+assign               : 83 100
+block                : 33 36 53
+class_body_decl      : 9 10
+class_body_decl_plus : 5 9
+class_decl           : 4
+class_decl_star      : 1 4
+constructor_decl     : 13
+else_opt             : 46
+empty                : 3 6 15 27 30 37 40 44 56 71 74 97 102 104
+expr                 : 46 47 67 73 75 80 85 85 86 86 87 88 96 105
+expr_opt             : 48 49
+extends              : 7
+extends_opt          : 5
+field_access         : 76 81
+field_decl           : 11
+formal_param         : 39 41
+formals              : 38
+formals_opt          : 33 36
+lhs                  : 69 88 89 90 91 92
+literal              : 64
+method_decl          : 12
+method_invocation    : 70 101
+modifier             : 14 33 36
+more_expr            : 73 75
+more_formals         : 39 41
+more_variables       : 26 28
+new_array            : 84
+primary              : 78 80 82
+program              : 0
+stmt                 : 45 46 47 48 57
+stmt_expr            : 50 103
+stmt_expr_opt        : 48 48
+stmt_star            : 43 45
+type                 : 21 34 42 93
+type_or_void         : 33
+var_decl             : 14 54
+variable             : 26 28 42
+variables            : 21
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . empty
-    (1) empty -> .
+    (0) S' -> . program
+    (1) program -> . class_decl_star
+    (3) class_decl_star -> . empty
+    (4) class_decl_star -> . class_decl class_decl_star
+    (2) empty -> .
+    (5) class_decl -> . CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
 
-    $end            reduce using rule 1 (empty -> .)
+    $end            reduce using rule 2 (empty -> .)
+    CLASS           shift and go to state 3
 
-    empty                          shift and go to state 1
+    program                        shift and go to state 1
+    class_decl                     shift and go to state 2
+    class_decl_star                shift and go to state 5
+    empty                          shift and go to state 4
 
 state 1
 
-    (0) S' -> empty .
+    (0) S' -> program .
 
 
+
+state 2
+
+    (4) class_decl_star -> class_decl . class_decl_star
+    (3) class_decl_star -> . empty
+    (4) class_decl_star -> . class_decl class_decl_star
+    (2) empty -> .
+    (5) class_decl -> . CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
+
+    $end            reduce using rule 2 (empty -> .)
+    CLASS           shift and go to state 3
+
+    class_decl                     shift and go to state 2
+    empty                          shift and go to state 4
+    class_decl_star                shift and go to state 6
+
+state 3
+
+    (5) class_decl -> CLASS . ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
+
+    ID              shift and go to state 7
+
+
+state 4
+
+    (3) class_decl_star -> empty .
+
+    $end            reduce using rule 3 (class_decl_star -> empty .)
+
+
+state 5
+
+    (1) program -> class_decl_star .
+
+    $end            reduce using rule 1 (program -> class_decl_star .)
+
+
+state 6
+
+    (4) class_decl_star -> class_decl class_decl_star .
+
+    $end            reduce using rule 4 (class_decl_star -> class_decl class_decl_star .)
+
+
+state 7
+
+    (5) class_decl -> CLASS ID . extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
+    (6) extends_opt -> . empty
+    (7) extends_opt -> . extends
+    (2) empty -> .
+    (8) extends -> . EXTENDS ID
+
+    LEFT_BRACE      reduce using rule 2 (empty -> .)
+    EXTENDS         shift and go to state 8
+
+    extends_opt                    shift and go to state 9
+    extends                        shift and go to state 10
+    empty                          shift and go to state 11
+
+state 8
+
+    (8) extends -> EXTENDS . ID
+
+    ID              shift and go to state 12
+
+
+state 9
+
+    (5) class_decl -> CLASS ID extends_opt . LEFT_BRACE class_body_decl_plus RIGHT_BRACE
+
+    LEFT_BRACE      shift and go to state 13
+
+
+state 10
+
+    (7) extends_opt -> extends .
+
+    LEFT_BRACE      reduce using rule 7 (extends_opt -> extends .)
+
+
+state 11
+
+    (6) extends_opt -> empty .
+
+    LEFT_BRACE      reduce using rule 6 (extends_opt -> empty .)
+
+
+state 12
+
+    (8) extends -> EXTENDS ID .
+
+    LEFT_BRACE      reduce using rule 8 (extends -> EXTENDS ID .)
+
+
+state 13
+
+    (5) class_decl -> CLASS ID extends_opt LEFT_BRACE . class_body_decl_plus RIGHT_BRACE
+    (9) class_body_decl_plus -> . class_body_decl class_body_decl_plus
+    (10) class_body_decl_plus -> . class_body_decl
+    (11) class_body_decl -> . field_decl
+    (12) class_body_decl -> . method_decl
+    (13) class_body_decl -> . constructor_decl
+    (14) field_decl -> . modifier var_decl
+    (33) method_decl -> . modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block
+    (36) constructor_decl -> . modifier ID LEFT_PAR formals_opt RIGHT_PAR block
+    (15) modifier -> . empty
+    (16) modifier -> . PUBLIC
+    (17) modifier -> . PRIVATE
+    (18) modifier -> . PUBLIC STATIC
+    (19) modifier -> . PRIVATE STATIC
+    (20) modifier -> . STATIC
+    (2) empty -> .
+
+    PUBLIC          shift and go to state 16
+    PRIVATE         shift and go to state 15
+    STATIC          shift and go to state 20
+    ID              reduce using rule 2 (empty -> .)
+    VOID            reduce using rule 2 (empty -> .)
+    INT             reduce using rule 2 (empty -> .)
+    FLOAT           reduce using rule 2 (empty -> .)
+    BOOLEAN         reduce using rule 2 (empty -> .)
+
+    class_body_decl                shift and go to state 14
+    field_decl                     shift and go to state 17
+    constructor_decl               shift and go to state 18
+    method_decl                    shift and go to state 21
+    empty                          shift and go to state 19
+    class_body_decl_plus           shift and go to state 22
+    modifier                       shift and go to state 23
+
+state 14
+
+    (9) class_body_decl_plus -> class_body_decl . class_body_decl_plus
+    (10) class_body_decl_plus -> class_body_decl .
+    (9) class_body_decl_plus -> . class_body_decl class_body_decl_plus
+    (10) class_body_decl_plus -> . class_body_decl
+    (11) class_body_decl -> . field_decl
+    (12) class_body_decl -> . method_decl
+    (13) class_body_decl -> . constructor_decl
+    (14) field_decl -> . modifier var_decl
+    (33) method_decl -> . modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block
+    (36) constructor_decl -> . modifier ID LEFT_PAR formals_opt RIGHT_PAR block
+    (15) modifier -> . empty
+    (16) modifier -> . PUBLIC
+    (17) modifier -> . PRIVATE
+    (18) modifier -> . PUBLIC STATIC
+    (19) modifier -> . PRIVATE STATIC
+    (20) modifier -> . STATIC
+    (2) empty -> .
+
+    RIGHT_BRACE     reduce using rule 10 (class_body_decl_plus -> class_body_decl .)
+    PUBLIC          shift and go to state 16
+    PRIVATE         shift and go to state 15
+    STATIC          shift and go to state 20
+    ID              reduce using rule 2 (empty -> .)
+    VOID            reduce using rule 2 (empty -> .)
+    INT             reduce using rule 2 (empty -> .)
+    FLOAT           reduce using rule 2 (empty -> .)
+    BOOLEAN         reduce using rule 2 (empty -> .)
+
+    class_body_decl                shift and go to state 14
+    field_decl                     shift and go to state 17
+    constructor_decl               shift and go to state 18
+    method_decl                    shift and go to state 21
+    empty                          shift and go to state 19
+    class_body_decl_plus           shift and go to state 24
+    modifier                       shift and go to state 23
+
+state 15
+
+    (17) modifier -> PRIVATE .
+    (19) modifier -> PRIVATE . STATIC
+
+    ID              reduce using rule 17 (modifier -> PRIVATE .)
+    VOID            reduce using rule 17 (modifier -> PRIVATE .)
+    INT             reduce using rule 17 (modifier -> PRIVATE .)
+    FLOAT           reduce using rule 17 (modifier -> PRIVATE .)
+    BOOLEAN         reduce using rule 17 (modifier -> PRIVATE .)
+    STATIC          shift and go to state 25
+
+
+state 16
+
+    (16) modifier -> PUBLIC .
+    (18) modifier -> PUBLIC . STATIC
+
+    ID              reduce using rule 16 (modifier -> PUBLIC .)
+    VOID            reduce using rule 16 (modifier -> PUBLIC .)
+    INT             reduce using rule 16 (modifier -> PUBLIC .)
+    FLOAT           reduce using rule 16 (modifier -> PUBLIC .)
+    BOOLEAN         reduce using rule 16 (modifier -> PUBLIC .)
+    STATIC          shift and go to state 26
+
+
+state 17
+
+    (11) class_body_decl -> field_decl .
+
+    PUBLIC          reduce using rule 11 (class_body_decl -> field_decl .)
+    PRIVATE         reduce using rule 11 (class_body_decl -> field_decl .)
+    STATIC          reduce using rule 11 (class_body_decl -> field_decl .)
+    ID              reduce using rule 11 (class_body_decl -> field_decl .)
+    VOID            reduce using rule 11 (class_body_decl -> field_decl .)
+    INT             reduce using rule 11 (class_body_decl -> field_decl .)
+    FLOAT           reduce using rule 11 (class_body_decl -> field_decl .)
+    BOOLEAN         reduce using rule 11 (class_body_decl -> field_decl .)
+    RIGHT_BRACE     reduce using rule 11 (class_body_decl -> field_decl .)
+
+
+state 18
+
+    (13) class_body_decl -> constructor_decl .
+
+    PUBLIC          reduce using rule 13 (class_body_decl -> constructor_decl .)
+    PRIVATE         reduce using rule 13 (class_body_decl -> constructor_decl .)
+    STATIC          reduce using rule 13 (class_body_decl -> constructor_decl .)
+    ID              reduce using rule 13 (class_body_decl -> constructor_decl .)
+    VOID            reduce using rule 13 (class_body_decl -> constructor_decl .)
+    INT             reduce using rule 13 (class_body_decl -> constructor_decl .)
+    FLOAT           reduce using rule 13 (class_body_decl -> constructor_decl .)
+    BOOLEAN         reduce using rule 13 (class_body_decl -> constructor_decl .)
+    RIGHT_BRACE     reduce using rule 13 (class_body_decl -> constructor_decl .)
+
+
+state 19
+
+    (15) modifier -> empty .
+
+    ID              reduce using rule 15 (modifier -> empty .)
+    VOID            reduce using rule 15 (modifier -> empty .)
+    INT             reduce using rule 15 (modifier -> empty .)
+    FLOAT           reduce using rule 15 (modifier -> empty .)
+    BOOLEAN         reduce using rule 15 (modifier -> empty .)
+
+
+state 20
+
+    (20) modifier -> STATIC .
+
+    ID              reduce using rule 20 (modifier -> STATIC .)
+    VOID            reduce using rule 20 (modifier -> STATIC .)
+    INT             reduce using rule 20 (modifier -> STATIC .)
+    FLOAT           reduce using rule 20 (modifier -> STATIC .)
+    BOOLEAN         reduce using rule 20 (modifier -> STATIC .)
+
+
+state 21
+
+    (12) class_body_decl -> method_decl .
+
+    PUBLIC          reduce using rule 12 (class_body_decl -> method_decl .)
+    PRIVATE         reduce using rule 12 (class_body_decl -> method_decl .)
+    STATIC          reduce using rule 12 (class_body_decl -> method_decl .)
+    ID              reduce using rule 12 (class_body_decl -> method_decl .)
+    VOID            reduce using rule 12 (class_body_decl -> method_decl .)
+    INT             reduce using rule 12 (class_body_decl -> method_decl .)
+    FLOAT           reduce using rule 12 (class_body_decl -> method_decl .)
+    BOOLEAN         reduce using rule 12 (class_body_decl -> method_decl .)
+    RIGHT_BRACE     reduce using rule 12 (class_body_decl -> method_decl .)
+
+
+state 22
+
+    (5) class_decl -> CLASS ID extends_opt LEFT_BRACE class_body_decl_plus . RIGHT_BRACE
+
+    RIGHT_BRACE     shift and go to state 27
+
+
+state 23
+
+    (14) field_decl -> modifier . var_decl
+    (33) method_decl -> modifier . type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block
+    (36) constructor_decl -> modifier . ID LEFT_PAR formals_opt RIGHT_PAR block
+    (21) var_decl -> . type variables SEMICOLON
+    (34) type_or_void -> . type
+    (35) type_or_void -> . VOID
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+
+    ID              shift and go to state 31
+    VOID            shift and go to state 32
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+
+    var_decl                       shift and go to state 30
+    type                           shift and go to state 34
+    type_or_void                   shift and go to state 35
+
+state 24
+
+    (9) class_body_decl_plus -> class_body_decl class_body_decl_plus .
+
+    RIGHT_BRACE     reduce using rule 9 (class_body_decl_plus -> class_body_decl class_body_decl_plus .)
+
+
+state 25
+
+    (19) modifier -> PRIVATE STATIC .
+
+    ID              reduce using rule 19 (modifier -> PRIVATE STATIC .)
+    VOID            reduce using rule 19 (modifier -> PRIVATE STATIC .)
+    INT             reduce using rule 19 (modifier -> PRIVATE STATIC .)
+    FLOAT           reduce using rule 19 (modifier -> PRIVATE STATIC .)
+    BOOLEAN         reduce using rule 19 (modifier -> PRIVATE STATIC .)
+
+
+state 26
+
+    (18) modifier -> PUBLIC STATIC .
+
+    ID              reduce using rule 18 (modifier -> PUBLIC STATIC .)
+    VOID            reduce using rule 18 (modifier -> PUBLIC STATIC .)
+    INT             reduce using rule 18 (modifier -> PUBLIC STATIC .)
+    FLOAT           reduce using rule 18 (modifier -> PUBLIC STATIC .)
+    BOOLEAN         reduce using rule 18 (modifier -> PUBLIC STATIC .)
+
+
+state 27
+
+    (5) class_decl -> CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE .
+
+    CLASS           reduce using rule 5 (class_decl -> CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE .)
+    $end            reduce using rule 5 (class_decl -> CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE .)
+
+
+state 28
+
+    (23) type -> FLOAT .
+
+    ID              reduce using rule 23 (type -> FLOAT .)
+    LEFT_BRACKET    reduce using rule 23 (type -> FLOAT .)
+
+
+state 29
+
+    (22) type -> INT .
+
+    ID              reduce using rule 22 (type -> INT .)
+    LEFT_BRACKET    reduce using rule 22 (type -> INT .)
+
+
+state 30
+
+    (14) field_decl -> modifier var_decl .
+
+    PUBLIC          reduce using rule 14 (field_decl -> modifier var_decl .)
+    PRIVATE         reduce using rule 14 (field_decl -> modifier var_decl .)
+    STATIC          reduce using rule 14 (field_decl -> modifier var_decl .)
+    ID              reduce using rule 14 (field_decl -> modifier var_decl .)
+    VOID            reduce using rule 14 (field_decl -> modifier var_decl .)
+    INT             reduce using rule 14 (field_decl -> modifier var_decl .)
+    FLOAT           reduce using rule 14 (field_decl -> modifier var_decl .)
+    BOOLEAN         reduce using rule 14 (field_decl -> modifier var_decl .)
+    RIGHT_BRACE     reduce using rule 14 (field_decl -> modifier var_decl .)
+
+
+state 31
+
+    (36) constructor_decl -> modifier ID . LEFT_PAR formals_opt RIGHT_PAR block
+    (25) type -> ID .
+
+    LEFT_PAR        shift and go to state 36
+    ID              reduce using rule 25 (type -> ID .)
+
+
+state 32
+
+    (35) type_or_void -> VOID .
+
+    ID              reduce using rule 35 (type_or_void -> VOID .)
+
+
+state 33
+
+    (24) type -> BOOLEAN .
+
+    ID              reduce using rule 24 (type -> BOOLEAN .)
+    LEFT_BRACKET    reduce using rule 24 (type -> BOOLEAN .)
+
+
+state 34
+
+    (21) var_decl -> type . variables SEMICOLON
+    (34) type_or_void -> type .
+    (26) variables -> . variable more_variables
+    (29) variable -> . ID array_dim_star
+
+  ! shift/reduce conflict for ID resolved as shift
+    ID              shift and go to state 39
+
+  ! ID              [ reduce using rule 34 (type_or_void -> type .) ]
+
+    variable                       shift and go to state 38
+    variables                      shift and go to state 37
+
+state 35
+
+    (33) method_decl -> modifier type_or_void . ID LEFT_PAR formals_opt RIGHT_PAR block
+
+    ID              shift and go to state 40
+
+
+state 36
+
+    (36) constructor_decl -> modifier ID LEFT_PAR . formals_opt RIGHT_PAR block
+    (37) formals_opt -> . empty
+    (38) formals_opt -> . formals
+    (2) empty -> .
+    (39) formals -> . formal_param more_formals
+    (42) formal_param -> . type variable
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 45
+
+    formal_param                   shift and go to state 41
+    formals_opt                    shift and go to state 43
+    type                           shift and go to state 44
+    empty                          shift and go to state 42
+    formals                        shift and go to state 46
+
+state 37
+
+    (21) var_decl -> type variables . SEMICOLON
+
+    SEMICOLON       shift and go to state 47
+
+
+state 38
+
+    (26) variables -> variable . more_variables
+    (27) more_variables -> . empty
+    (28) more_variables -> . COMMA variable more_variables
+    (2) empty -> .
+
+    COMMA           shift and go to state 49
+    SEMICOLON       reduce using rule 2 (empty -> .)
+
+    more_variables                 shift and go to state 48
+    empty                          shift and go to state 50
+
+state 39
+
+    (29) variable -> ID . array_dim_star
+    (30) array_dim_star -> . empty
+    (31) array_dim_star -> . array_dim array_dim_star
+    (2) empty -> .
+    (32) array_dim -> . LEFT_BRACKET RIGHT_BRACKET
+
+    COMMA           reduce using rule 2 (empty -> .)
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    LEFT_BRACKET    shift and go to state 53
+
+    array_dim                      shift and go to state 51
+    array_dim_star                 shift and go to state 52
+    empty                          shift and go to state 54
+
+state 40
+
+    (33) method_decl -> modifier type_or_void ID . LEFT_PAR formals_opt RIGHT_PAR block
+
+    LEFT_PAR        shift and go to state 55
+
+
+state 41
+
+    (39) formals -> formal_param . more_formals
+    (40) more_formals -> . empty
+    (41) more_formals -> . COMMA formal_param more_formals
+    (2) empty -> .
+
+    COMMA           shift and go to state 56
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+
+    empty                          shift and go to state 57
+    more_formals                   shift and go to state 58
+
+state 42
+
+    (37) formals_opt -> empty .
+
+    RIGHT_PAR       reduce using rule 37 (formals_opt -> empty .)
+
+
+state 43
+
+    (36) constructor_decl -> modifier ID LEFT_PAR formals_opt . RIGHT_PAR block
+
+    RIGHT_PAR       shift and go to state 59
+
+
+state 44
+
+    (42) formal_param -> type . variable
+    (29) variable -> . ID array_dim_star
+
+    ID              shift and go to state 39
+
+    variable                       shift and go to state 60
+
+state 45
+
+    (25) type -> ID .
+
+    ID              reduce using rule 25 (type -> ID .)
+
+
+state 46
+
+    (38) formals_opt -> formals .
+
+    RIGHT_PAR       reduce using rule 38 (formals_opt -> formals .)
+
+
+state 47
+
+    (21) var_decl -> type variables SEMICOLON .
+
+    IF              reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    WHILE           reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    FOR             reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    RETURN          reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    BREAK           reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    CONTINUE        reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    SEMICOLON       reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    LEFT_BRACE      reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    PLUS_PLUS       reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    MINUS_MINUS     reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    INT             reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    FLOAT           reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    BOOLEAN         reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    ID              reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    THIS            reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    SUPER           reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    LEFT_PAR        reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    NEW             reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    INT_CONST       reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    FLOAT_CONST     reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    STRING_CONST    reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    NULL            reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    TRUE            reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    FALSE           reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    ELSE            reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    PUBLIC          reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    PRIVATE         reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    STATIC          reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+    VOID            reduce using rule 21 (var_decl -> type variables SEMICOLON .)
+
+
+state 48
+
+    (26) variables -> variable more_variables .
+
+    SEMICOLON       reduce using rule 26 (variables -> variable more_variables .)
+
+
+state 49
+
+    (28) more_variables -> COMMA . variable more_variables
+    (29) variable -> . ID array_dim_star
+
+    ID              shift and go to state 39
+
+    variable                       shift and go to state 61
+
+state 50
+
+    (27) more_variables -> empty .
+
+    SEMICOLON       reduce using rule 27 (more_variables -> empty .)
+
+
+state 51
+
+    (31) array_dim_star -> array_dim . array_dim_star
+    (30) array_dim_star -> . empty
+    (31) array_dim_star -> . array_dim array_dim_star
+    (2) empty -> .
+    (32) array_dim -> . LEFT_BRACKET RIGHT_BRACKET
+
+    COMMA           reduce using rule 2 (empty -> .)
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    LEFT_BRACKET    shift and go to state 53
+
+    array_dim                      shift and go to state 51
+    array_dim_star                 shift and go to state 62
+    empty                          shift and go to state 54
+
+state 52
+
+    (29) variable -> ID array_dim_star .
+
+    COMMA           reduce using rule 29 (variable -> ID array_dim_star .)
+    SEMICOLON       reduce using rule 29 (variable -> ID array_dim_star .)
+    RIGHT_PAR       reduce using rule 29 (variable -> ID array_dim_star .)
+
+
+state 53
+
+    (32) array_dim -> LEFT_BRACKET . RIGHT_BRACKET
+
+    RIGHT_BRACKET   shift and go to state 63
+
+
+state 54
+
+    (30) array_dim_star -> empty .
+
+    COMMA           reduce using rule 30 (array_dim_star -> empty .)
+    SEMICOLON       reduce using rule 30 (array_dim_star -> empty .)
+    RIGHT_PAR       reduce using rule 30 (array_dim_star -> empty .)
+
+
+state 55
+
+    (33) method_decl -> modifier type_or_void ID LEFT_PAR . formals_opt RIGHT_PAR block
+    (37) formals_opt -> . empty
+    (38) formals_opt -> . formals
+    (2) empty -> .
+    (39) formals -> . formal_param more_formals
+    (42) formal_param -> . type variable
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 45
+
+    formals_opt                    shift and go to state 64
+    formal_param                   shift and go to state 41
+    type                           shift and go to state 44
+    empty                          shift and go to state 42
+    formals                        shift and go to state 46
+
+state 56
+
+    (41) more_formals -> COMMA . formal_param more_formals
+    (42) formal_param -> . type variable
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 45
+
+    formal_param                   shift and go to state 65
+    type                           shift and go to state 44
+
+state 57
+
+    (40) more_formals -> empty .
+
+    RIGHT_PAR       reduce using rule 40 (more_formals -> empty .)
+
+
+state 58
+
+    (39) formals -> formal_param more_formals .
+
+    RIGHT_PAR       reduce using rule 39 (formals -> formal_param more_formals .)
+
+
+state 59
+
+    (36) constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR . block
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+
+    LEFT_BRACE      shift and go to state 67
+
+    block                          shift and go to state 66
+
+state 60
+
+    (42) formal_param -> type variable .
+
+    COMMA           reduce using rule 42 (formal_param -> type variable .)
+    RIGHT_PAR       reduce using rule 42 (formal_param -> type variable .)
+
+
+state 61
+
+    (28) more_variables -> COMMA variable . more_variables
+    (27) more_variables -> . empty
+    (28) more_variables -> . COMMA variable more_variables
+    (2) empty -> .
+
+    COMMA           shift and go to state 49
+    SEMICOLON       reduce using rule 2 (empty -> .)
+
+    more_variables                 shift and go to state 68
+    empty                          shift and go to state 50
+
+state 62
+
+    (31) array_dim_star -> array_dim array_dim_star .
+
+    COMMA           reduce using rule 31 (array_dim_star -> array_dim array_dim_star .)
+    SEMICOLON       reduce using rule 31 (array_dim_star -> array_dim array_dim_star .)
+    RIGHT_PAR       reduce using rule 31 (array_dim_star -> array_dim array_dim_star .)
+
+
+state 63
+
+    (32) array_dim -> LEFT_BRACKET RIGHT_BRACKET .
+
+    LEFT_BRACKET    reduce using rule 32 (array_dim -> LEFT_BRACKET RIGHT_BRACKET .)
+    COMMA           reduce using rule 32 (array_dim -> LEFT_BRACKET RIGHT_BRACKET .)
+    SEMICOLON       reduce using rule 32 (array_dim -> LEFT_BRACKET RIGHT_BRACKET .)
+    RIGHT_PAR       reduce using rule 32 (array_dim -> LEFT_BRACKET RIGHT_BRACKET .)
+
+
+state 64
+
+    (33) method_decl -> modifier type_or_void ID LEFT_PAR formals_opt . RIGHT_PAR block
+
+    RIGHT_PAR       shift and go to state 69
+
+
+state 65
+
+    (41) more_formals -> COMMA formal_param . more_formals
+    (40) more_formals -> . empty
+    (41) more_formals -> . COMMA formal_param more_formals
+    (2) empty -> .
+
+    COMMA           shift and go to state 56
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+
+    empty                          shift and go to state 57
+    more_formals                   shift and go to state 70
+
+state 66
+
+    (36) constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .
+
+    PUBLIC          reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    PRIVATE         reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    STATIC          reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    ID              reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    VOID            reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    INT             reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    FLOAT           reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    BOOLEAN         reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    RIGHT_BRACE     reduce using rule 36 (constructor_decl -> modifier ID LEFT_PAR formals_opt RIGHT_PAR block .)
+
+
+state 67
+
+    (43) block -> LEFT_BRACE . stmt_star RIGHT_BRACE
+    (44) stmt_star -> . empty
+    (45) stmt_star -> . stmt stmt_star
+    (2) empty -> .
+    (46) stmt -> . IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+    (47) stmt -> . WHILE LEFT_PAR expr RIGHT_PAR stmt
+    (48) stmt -> . FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (49) stmt -> . RETURN expr_opt SEMICOLON
+    (50) stmt -> . stmt_expr SEMICOLON
+    (51) stmt -> . BREAK SEMICOLON
+    (52) stmt -> . CONTINUE SEMICOLON
+    (53) stmt -> . block
+    (54) stmt -> . var_decl
+    (55) stmt -> . SEMICOLON
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+    (21) var_decl -> . type variables SEMICOLON
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    RIGHT_BRACE     reduce using rule 2 (empty -> .)
+    IF              shift and go to state 91
+    WHILE           shift and go to state 72
+    FOR             shift and go to state 86
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 94
+    CONTINUE        shift and go to state 96
+    SEMICOLON       shift and go to state 78
+    LEFT_BRACE      shift and go to state 67
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 90
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    array_access                   shift and go to state 75
+    stmt_expr                      shift and go to state 80
+    var_decl                       shift and go to state 93
+    primary                        shift and go to state 88
+    stmt                           shift and go to state 87
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    block                          shift and go to state 103
+    type                           shift and go to state 83
+    method_invocation              shift and go to state 82
+    stmt_star                      shift and go to state 89
+    assign                         shift and go to state 102
+    empty                          shift and go to state 84
+
+state 68
+
+    (28) more_variables -> COMMA variable more_variables .
+
+    SEMICOLON       reduce using rule 28 (more_variables -> COMMA variable more_variables .)
+
+
+state 69
+
+    (33) method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR . block
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+
+    LEFT_BRACE      shift and go to state 67
+
+    block                          shift and go to state 105
+
+state 70
+
+    (41) more_formals -> COMMA formal_param more_formals .
+
+    RIGHT_PAR       reduce using rule 41 (more_formals -> COMMA formal_param more_formals .)
+
+
+state 71
+
+    (49) stmt -> RETURN . expr_opt SEMICOLON
+    (104) expr_opt -> . empty
+    (105) expr_opt -> . expr
+    (2) empty -> .
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 114
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    expr_opt                       shift and go to state 109
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+    empty                          shift and go to state 111
+
+state 72
+
+    (47) stmt -> WHILE . LEFT_PAR expr RIGHT_PAR stmt
+
+    LEFT_PAR        shift and go to state 118
+
+
+state 73
+
+    (68) primary -> NEW . ID LEFT_PAR arguments_opt RIGHT_PAR
+
+    ID              shift and go to state 119
+
+
+state 74
+
+    (61) literal -> NULL .
+
+    DOT             reduce using rule 61 (literal -> NULL .)
+    LEFT_BRACKET    reduce using rule 61 (literal -> NULL .)
+    RIGHT_BRACKET   reduce using rule 61 (literal -> NULL .)
+    ARITH_OP        reduce using rule 61 (literal -> NULL .)
+    BOOL_OP         reduce using rule 61 (literal -> NULL .)
+    RIGHT_PAR       reduce using rule 61 (literal -> NULL .)
+    SEMICOLON       reduce using rule 61 (literal -> NULL .)
+    COMMA           reduce using rule 61 (literal -> NULL .)
+
+
+state 75
+
+    (77) lhs -> array_access .
+
+    EQUALS          reduce using rule 77 (lhs -> array_access .)
+    PLUS_PLUS       reduce using rule 77 (lhs -> array_access .)
+    MINUS_MINUS     reduce using rule 77 (lhs -> array_access .)
+    DOT             reduce using rule 77 (lhs -> array_access .)
+    LEFT_BRACKET    reduce using rule 77 (lhs -> array_access .)
+    ARITH_OP        reduce using rule 77 (lhs -> array_access .)
+    BOOL_OP         reduce using rule 77 (lhs -> array_access .)
+    SEMICOLON       reduce using rule 77 (lhs -> array_access .)
+    RIGHT_PAR       reduce using rule 77 (lhs -> array_access .)
+    COMMA           reduce using rule 77 (lhs -> array_access .)
+    RIGHT_BRACKET   reduce using rule 77 (lhs -> array_access .)
+
+
+state 76
+
+    (60) literal -> STRING_CONST .
+
+    DOT             reduce using rule 60 (literal -> STRING_CONST .)
+    LEFT_BRACKET    reduce using rule 60 (literal -> STRING_CONST .)
+    RIGHT_BRACKET   reduce using rule 60 (literal -> STRING_CONST .)
+    ARITH_OP        reduce using rule 60 (literal -> STRING_CONST .)
+    BOOL_OP         reduce using rule 60 (literal -> STRING_CONST .)
+    RIGHT_PAR       reduce using rule 60 (literal -> STRING_CONST .)
+    SEMICOLON       reduce using rule 60 (literal -> STRING_CONST .)
+    COMMA           reduce using rule 60 (literal -> STRING_CONST .)
+
+
+state 77
+
+    (58) literal -> INT_CONST .
+
+    DOT             reduce using rule 58 (literal -> INT_CONST .)
+    LEFT_BRACKET    reduce using rule 58 (literal -> INT_CONST .)
+    RIGHT_BRACKET   reduce using rule 58 (literal -> INT_CONST .)
+    ARITH_OP        reduce using rule 58 (literal -> INT_CONST .)
+    BOOL_OP         reduce using rule 58 (literal -> INT_CONST .)
+    RIGHT_PAR       reduce using rule 58 (literal -> INT_CONST .)
+    SEMICOLON       reduce using rule 58 (literal -> INT_CONST .)
+    COMMA           reduce using rule 58 (literal -> INT_CONST .)
+
+
+state 78
+
+    (55) stmt -> SEMICOLON .
+
+    IF              reduce using rule 55 (stmt -> SEMICOLON .)
+    WHILE           reduce using rule 55 (stmt -> SEMICOLON .)
+    FOR             reduce using rule 55 (stmt -> SEMICOLON .)
+    RETURN          reduce using rule 55 (stmt -> SEMICOLON .)
+    BREAK           reduce using rule 55 (stmt -> SEMICOLON .)
+    CONTINUE        reduce using rule 55 (stmt -> SEMICOLON .)
+    SEMICOLON       reduce using rule 55 (stmt -> SEMICOLON .)
+    LEFT_BRACE      reduce using rule 55 (stmt -> SEMICOLON .)
+    PLUS_PLUS       reduce using rule 55 (stmt -> SEMICOLON .)
+    MINUS_MINUS     reduce using rule 55 (stmt -> SEMICOLON .)
+    INT             reduce using rule 55 (stmt -> SEMICOLON .)
+    FLOAT           reduce using rule 55 (stmt -> SEMICOLON .)
+    BOOLEAN         reduce using rule 55 (stmt -> SEMICOLON .)
+    ID              reduce using rule 55 (stmt -> SEMICOLON .)
+    THIS            reduce using rule 55 (stmt -> SEMICOLON .)
+    SUPER           reduce using rule 55 (stmt -> SEMICOLON .)
+    LEFT_PAR        reduce using rule 55 (stmt -> SEMICOLON .)
+    NEW             reduce using rule 55 (stmt -> SEMICOLON .)
+    INT_CONST       reduce using rule 55 (stmt -> SEMICOLON .)
+    FLOAT_CONST     reduce using rule 55 (stmt -> SEMICOLON .)
+    STRING_CONST    reduce using rule 55 (stmt -> SEMICOLON .)
+    NULL            reduce using rule 55 (stmt -> SEMICOLON .)
+    TRUE            reduce using rule 55 (stmt -> SEMICOLON .)
+    FALSE           reduce using rule 55 (stmt -> SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 55 (stmt -> SEMICOLON .)
+    ELSE            reduce using rule 55 (stmt -> SEMICOLON .)
+
+
+state 79
+
+    (62) literal -> TRUE .
+
+    DOT             reduce using rule 62 (literal -> TRUE .)
+    LEFT_BRACKET    reduce using rule 62 (literal -> TRUE .)
+    RIGHT_BRACKET   reduce using rule 62 (literal -> TRUE .)
+    ARITH_OP        reduce using rule 62 (literal -> TRUE .)
+    BOOL_OP         reduce using rule 62 (literal -> TRUE .)
+    RIGHT_PAR       reduce using rule 62 (literal -> TRUE .)
+    SEMICOLON       reduce using rule 62 (literal -> TRUE .)
+    COMMA           reduce using rule 62 (literal -> TRUE .)
+
+
+state 80
+
+    (50) stmt -> stmt_expr . SEMICOLON
+
+    SEMICOLON       shift and go to state 120
+
+
+state 81
+
+    (64) primary -> literal .
+
+    DOT             reduce using rule 64 (primary -> literal .)
+    LEFT_BRACKET    reduce using rule 64 (primary -> literal .)
+    ARITH_OP        reduce using rule 64 (primary -> literal .)
+    BOOL_OP         reduce using rule 64 (primary -> literal .)
+    COMMA           reduce using rule 64 (primary -> literal .)
+    RIGHT_PAR       reduce using rule 64 (primary -> literal .)
+    SEMICOLON       reduce using rule 64 (primary -> literal .)
+    RIGHT_BRACKET   reduce using rule 64 (primary -> literal .)
+
+
+state 82
+
+    (101) stmt_expr -> method_invocation .
+    (70) primary -> method_invocation .
+
+    SEMICOLON       reduce using rule 101 (stmt_expr -> method_invocation .)
+    RIGHT_PAR       reduce using rule 101 (stmt_expr -> method_invocation .)
+    DOT             reduce using rule 70 (primary -> method_invocation .)
+    LEFT_BRACKET    reduce using rule 70 (primary -> method_invocation .)
+
+
+state 83
+
+    (21) var_decl -> type . variables SEMICOLON
+    (26) variables -> . variable more_variables
+    (29) variable -> . ID array_dim_star
+
+    ID              shift and go to state 39
+
+    variable                       shift and go to state 38
+    variables                      shift and go to state 37
+
+state 84
+
+    (44) stmt_star -> empty .
+
+    RIGHT_BRACE     reduce using rule 44 (stmt_star -> empty .)
+
+
+state 85
+
+    (81) method_invocation -> field_access . LEFT_PAR arguments_opt RIGHT_PAR
+    (76) lhs -> field_access .
+
+    LEFT_PAR        shift and go to state 121
+    EQUALS          reduce using rule 76 (lhs -> field_access .)
+    PLUS_PLUS       reduce using rule 76 (lhs -> field_access .)
+    MINUS_MINUS     reduce using rule 76 (lhs -> field_access .)
+    DOT             reduce using rule 76 (lhs -> field_access .)
+    LEFT_BRACKET    reduce using rule 76 (lhs -> field_access .)
+
+
+state 86
+
+    (48) stmt -> FOR . LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+
+    LEFT_PAR        shift and go to state 122
+
+
+state 87
+
+    (45) stmt_star -> stmt . stmt_star
+    (44) stmt_star -> . empty
+    (45) stmt_star -> . stmt stmt_star
+    (2) empty -> .
+    (46) stmt -> . IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+    (47) stmt -> . WHILE LEFT_PAR expr RIGHT_PAR stmt
+    (48) stmt -> . FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (49) stmt -> . RETURN expr_opt SEMICOLON
+    (50) stmt -> . stmt_expr SEMICOLON
+    (51) stmt -> . BREAK SEMICOLON
+    (52) stmt -> . CONTINUE SEMICOLON
+    (53) stmt -> . block
+    (54) stmt -> . var_decl
+    (55) stmt -> . SEMICOLON
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+    (21) var_decl -> . type variables SEMICOLON
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    RIGHT_BRACE     reduce using rule 2 (empty -> .)
+    IF              shift and go to state 91
+    WHILE           shift and go to state 72
+    FOR             shift and go to state 86
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 94
+    CONTINUE        shift and go to state 96
+    SEMICOLON       shift and go to state 78
+    LEFT_BRACE      shift and go to state 67
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 90
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    array_access                   shift and go to state 75
+    stmt_expr                      shift and go to state 80
+    var_decl                       shift and go to state 93
+    primary                        shift and go to state 88
+    stmt                           shift and go to state 87
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    block                          shift and go to state 103
+    type                           shift and go to state 83
+    method_invocation              shift and go to state 82
+    stmt_star                      shift and go to state 123
+    assign                         shift and go to state 102
+    empty                          shift and go to state 84
+
+state 88
+
+    (78) field_access -> primary . DOT ID
+    (80) array_access -> primary . LEFT_BRACKET expr RIGHT_BRACKET
+
+    DOT             shift and go to state 125
+    LEFT_BRACKET    shift and go to state 124
+
+
+state 89
+
+    (43) block -> LEFT_BRACE stmt_star . RIGHT_BRACE
+
+    RIGHT_BRACE     shift and go to state 126
+
+
+state 90
+
+    (25) type -> ID .
+    (79) field_access -> ID .
+
+    ID              reduce using rule 25 (type -> ID .)
+    LEFT_PAR        reduce using rule 79 (field_access -> ID .)
+    EQUALS          reduce using rule 79 (field_access -> ID .)
+    PLUS_PLUS       reduce using rule 79 (field_access -> ID .)
+    MINUS_MINUS     reduce using rule 79 (field_access -> ID .)
+    DOT             reduce using rule 79 (field_access -> ID .)
+    LEFT_BRACKET    reduce using rule 79 (field_access -> ID .)
+
+
+state 91
+
+    (46) stmt -> IF . LEFT_PAR expr RIGHT_PAR stmt else_opt
+
+    LEFT_PAR        shift and go to state 127
+
+
+state 92
+
+    (63) literal -> FALSE .
+
+    DOT             reduce using rule 63 (literal -> FALSE .)
+    LEFT_BRACKET    reduce using rule 63 (literal -> FALSE .)
+    RIGHT_BRACKET   reduce using rule 63 (literal -> FALSE .)
+    ARITH_OP        reduce using rule 63 (literal -> FALSE .)
+    BOOL_OP         reduce using rule 63 (literal -> FALSE .)
+    RIGHT_PAR       reduce using rule 63 (literal -> FALSE .)
+    SEMICOLON       reduce using rule 63 (literal -> FALSE .)
+    COMMA           reduce using rule 63 (literal -> FALSE .)
+
+
+state 93
+
+    (54) stmt -> var_decl .
+
+    IF              reduce using rule 54 (stmt -> var_decl .)
+    WHILE           reduce using rule 54 (stmt -> var_decl .)
+    FOR             reduce using rule 54 (stmt -> var_decl .)
+    RETURN          reduce using rule 54 (stmt -> var_decl .)
+    BREAK           reduce using rule 54 (stmt -> var_decl .)
+    CONTINUE        reduce using rule 54 (stmt -> var_decl .)
+    SEMICOLON       reduce using rule 54 (stmt -> var_decl .)
+    LEFT_BRACE      reduce using rule 54 (stmt -> var_decl .)
+    PLUS_PLUS       reduce using rule 54 (stmt -> var_decl .)
+    MINUS_MINUS     reduce using rule 54 (stmt -> var_decl .)
+    INT             reduce using rule 54 (stmt -> var_decl .)
+    FLOAT           reduce using rule 54 (stmt -> var_decl .)
+    BOOLEAN         reduce using rule 54 (stmt -> var_decl .)
+    ID              reduce using rule 54 (stmt -> var_decl .)
+    THIS            reduce using rule 54 (stmt -> var_decl .)
+    SUPER           reduce using rule 54 (stmt -> var_decl .)
+    LEFT_PAR        reduce using rule 54 (stmt -> var_decl .)
+    NEW             reduce using rule 54 (stmt -> var_decl .)
+    INT_CONST       reduce using rule 54 (stmt -> var_decl .)
+    FLOAT_CONST     reduce using rule 54 (stmt -> var_decl .)
+    STRING_CONST    reduce using rule 54 (stmt -> var_decl .)
+    NULL            reduce using rule 54 (stmt -> var_decl .)
+    TRUE            reduce using rule 54 (stmt -> var_decl .)
+    FALSE           reduce using rule 54 (stmt -> var_decl .)
+    RIGHT_BRACE     reduce using rule 54 (stmt -> var_decl .)
+    ELSE            reduce using rule 54 (stmt -> var_decl .)
+
+
+state 94
+
+    (51) stmt -> BREAK . SEMICOLON
+
+    SEMICOLON       shift and go to state 128
+
+
+state 95
+
+    (65) primary -> THIS .
+
+    DOT             reduce using rule 65 (primary -> THIS .)
+    LEFT_BRACKET    reduce using rule 65 (primary -> THIS .)
+    ARITH_OP        reduce using rule 65 (primary -> THIS .)
+    BOOL_OP         reduce using rule 65 (primary -> THIS .)
+    COMMA           reduce using rule 65 (primary -> THIS .)
+    RIGHT_PAR       reduce using rule 65 (primary -> THIS .)
+    SEMICOLON       reduce using rule 65 (primary -> THIS .)
+    RIGHT_BRACKET   reduce using rule 65 (primary -> THIS .)
+
+
+state 96
+
+    (52) stmt -> CONTINUE . SEMICOLON
+
+    SEMICOLON       shift and go to state 129
+
+
+state 97
+
+    (88) assign -> lhs . EQUALS expr
+    (89) assign -> lhs . PLUS_PLUS
+    (91) assign -> lhs . MINUS_MINUS
+    (69) primary -> lhs .
+
+    EQUALS          shift and go to state 130
+    PLUS_PLUS       shift and go to state 131
+    MINUS_MINUS     shift and go to state 132
+    DOT             reduce using rule 69 (primary -> lhs .)
+    LEFT_BRACKET    reduce using rule 69 (primary -> lhs .)
+
+
+state 98
+
+    (92) assign -> MINUS_MINUS . lhs
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+
+    ID              shift and go to state 113
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 112
+    primary                        shift and go to state 88
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 133
+    method_invocation              shift and go to state 110
+    array_access                   shift and go to state 75
+
+state 99
+
+    (90) assign -> PLUS_PLUS . lhs
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+
+    ID              shift and go to state 113
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 112
+    primary                        shift and go to state 88
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 134
+    method_invocation              shift and go to state 110
+    array_access                   shift and go to state 75
+
+state 100
+
+    (67) primary -> LEFT_PAR . expr RIGHT_PAR
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 135
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 101
+
+    (66) primary -> SUPER .
+
+    DOT             reduce using rule 66 (primary -> SUPER .)
+    LEFT_BRACKET    reduce using rule 66 (primary -> SUPER .)
+    ARITH_OP        reduce using rule 66 (primary -> SUPER .)
+    BOOL_OP         reduce using rule 66 (primary -> SUPER .)
+    COMMA           reduce using rule 66 (primary -> SUPER .)
+    RIGHT_PAR       reduce using rule 66 (primary -> SUPER .)
+    SEMICOLON       reduce using rule 66 (primary -> SUPER .)
+    RIGHT_BRACKET   reduce using rule 66 (primary -> SUPER .)
+
+
+state 102
+
+    (100) stmt_expr -> assign .
+
+    SEMICOLON       reduce using rule 100 (stmt_expr -> assign .)
+    RIGHT_PAR       reduce using rule 100 (stmt_expr -> assign .)
+
+
+state 103
+
+    (53) stmt -> block .
+
+    IF              reduce using rule 53 (stmt -> block .)
+    WHILE           reduce using rule 53 (stmt -> block .)
+    FOR             reduce using rule 53 (stmt -> block .)
+    RETURN          reduce using rule 53 (stmt -> block .)
+    BREAK           reduce using rule 53 (stmt -> block .)
+    CONTINUE        reduce using rule 53 (stmt -> block .)
+    SEMICOLON       reduce using rule 53 (stmt -> block .)
+    LEFT_BRACE      reduce using rule 53 (stmt -> block .)
+    PLUS_PLUS       reduce using rule 53 (stmt -> block .)
+    MINUS_MINUS     reduce using rule 53 (stmt -> block .)
+    INT             reduce using rule 53 (stmt -> block .)
+    FLOAT           reduce using rule 53 (stmt -> block .)
+    BOOLEAN         reduce using rule 53 (stmt -> block .)
+    ID              reduce using rule 53 (stmt -> block .)
+    THIS            reduce using rule 53 (stmt -> block .)
+    SUPER           reduce using rule 53 (stmt -> block .)
+    LEFT_PAR        reduce using rule 53 (stmt -> block .)
+    NEW             reduce using rule 53 (stmt -> block .)
+    INT_CONST       reduce using rule 53 (stmt -> block .)
+    FLOAT_CONST     reduce using rule 53 (stmt -> block .)
+    STRING_CONST    reduce using rule 53 (stmt -> block .)
+    NULL            reduce using rule 53 (stmt -> block .)
+    TRUE            reduce using rule 53 (stmt -> block .)
+    FALSE           reduce using rule 53 (stmt -> block .)
+    RIGHT_BRACE     reduce using rule 53 (stmt -> block .)
+    ELSE            reduce using rule 53 (stmt -> block .)
+
+
+state 104
+
+    (59) literal -> FLOAT_CONST .
+
+    DOT             reduce using rule 59 (literal -> FLOAT_CONST .)
+    LEFT_BRACKET    reduce using rule 59 (literal -> FLOAT_CONST .)
+    RIGHT_BRACKET   reduce using rule 59 (literal -> FLOAT_CONST .)
+    ARITH_OP        reduce using rule 59 (literal -> FLOAT_CONST .)
+    BOOL_OP         reduce using rule 59 (literal -> FLOAT_CONST .)
+    RIGHT_PAR       reduce using rule 59 (literal -> FLOAT_CONST .)
+    SEMICOLON       reduce using rule 59 (literal -> FLOAT_CONST .)
+    COMMA           reduce using rule 59 (literal -> FLOAT_CONST .)
+
+
+state 105
+
+    (33) method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .
+
+    PUBLIC          reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    PRIVATE         reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    STATIC          reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    ID              reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    VOID            reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    INT             reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    FLOAT           reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    BOOLEAN         reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+    RIGHT_BRACE     reduce using rule 33 (method_decl -> modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block .)
+
+
+state 106
+
+    (84) expr -> new_array .
+
+    ARITH_OP        reduce using rule 84 (expr -> new_array .)
+    BOOL_OP         reduce using rule 84 (expr -> new_array .)
+    COMMA           reduce using rule 84 (expr -> new_array .)
+    RIGHT_PAR       reduce using rule 84 (expr -> new_array .)
+    SEMICOLON       reduce using rule 84 (expr -> new_array .)
+    RIGHT_BRACKET   reduce using rule 84 (expr -> new_array .)
+
+
+state 107
+
+    (82) expr -> primary .
+    (78) field_access -> primary . DOT ID
+    (80) array_access -> primary . LEFT_BRACKET expr RIGHT_BRACKET
+
+    ARITH_OP        reduce using rule 82 (expr -> primary .)
+    BOOL_OP         reduce using rule 82 (expr -> primary .)
+    COMMA           reduce using rule 82 (expr -> primary .)
+    RIGHT_PAR       reduce using rule 82 (expr -> primary .)
+    SEMICOLON       reduce using rule 82 (expr -> primary .)
+    RIGHT_BRACKET   reduce using rule 82 (expr -> primary .)
+    DOT             shift and go to state 125
+    LEFT_BRACKET    shift and go to state 124
+
+
+state 108
+
+    (68) primary -> NEW . ID LEFT_PAR arguments_opt RIGHT_PAR
+    (93) new_array -> NEW . type array_expr_plus array_empty_star
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+
+    ID              shift and go to state 137
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+
+    type                           shift and go to state 136
+
+state 109
+
+    (49) stmt -> RETURN expr_opt . SEMICOLON
+
+    SEMICOLON       shift and go to state 138
+
+
+state 110
+
+    (70) primary -> method_invocation .
+
+    DOT             reduce using rule 70 (primary -> method_invocation .)
+    LEFT_BRACKET    reduce using rule 70 (primary -> method_invocation .)
+    ARITH_OP        reduce using rule 70 (primary -> method_invocation .)
+    BOOL_OP         reduce using rule 70 (primary -> method_invocation .)
+    COMMA           reduce using rule 70 (primary -> method_invocation .)
+    RIGHT_PAR       reduce using rule 70 (primary -> method_invocation .)
+    SEMICOLON       reduce using rule 70 (primary -> method_invocation .)
+    RIGHT_BRACKET   reduce using rule 70 (primary -> method_invocation .)
+
+
+state 111
+
+    (104) expr_opt -> empty .
+
+    SEMICOLON       reduce using rule 104 (expr_opt -> empty .)
+
+
+state 112
+
+    (76) lhs -> field_access .
+    (81) method_invocation -> field_access . LEFT_PAR arguments_opt RIGHT_PAR
+
+    EQUALS          reduce using rule 76 (lhs -> field_access .)
+    PLUS_PLUS       reduce using rule 76 (lhs -> field_access .)
+    MINUS_MINUS     reduce using rule 76 (lhs -> field_access .)
+    DOT             reduce using rule 76 (lhs -> field_access .)
+    LEFT_BRACKET    reduce using rule 76 (lhs -> field_access .)
+    ARITH_OP        reduce using rule 76 (lhs -> field_access .)
+    BOOL_OP         reduce using rule 76 (lhs -> field_access .)
+    SEMICOLON       reduce using rule 76 (lhs -> field_access .)
+    RIGHT_PAR       reduce using rule 76 (lhs -> field_access .)
+    COMMA           reduce using rule 76 (lhs -> field_access .)
+    RIGHT_BRACKET   reduce using rule 76 (lhs -> field_access .)
+    LEFT_PAR        shift and go to state 121
+
+
+state 113
+
+    (79) field_access -> ID .
+
+    LEFT_PAR        reduce using rule 79 (field_access -> ID .)
+    EQUALS          reduce using rule 79 (field_access -> ID .)
+    PLUS_PLUS       reduce using rule 79 (field_access -> ID .)
+    MINUS_MINUS     reduce using rule 79 (field_access -> ID .)
+    DOT             reduce using rule 79 (field_access -> ID .)
+    LEFT_BRACKET    reduce using rule 79 (field_access -> ID .)
+    RIGHT_BRACKET   reduce using rule 79 (field_access -> ID .)
+    ARITH_OP        reduce using rule 79 (field_access -> ID .)
+    BOOL_OP         reduce using rule 79 (field_access -> ID .)
+    RIGHT_PAR       reduce using rule 79 (field_access -> ID .)
+    SEMICOLON       reduce using rule 79 (field_access -> ID .)
+    COMMA           reduce using rule 79 (field_access -> ID .)
+
+
+state 114
+
+    (105) expr_opt -> expr .
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+    SEMICOLON       reduce using rule 105 (expr_opt -> expr .)
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+
+state 115
+
+    (69) primary -> lhs .
+    (88) assign -> lhs . EQUALS expr
+    (89) assign -> lhs . PLUS_PLUS
+    (91) assign -> lhs . MINUS_MINUS
+
+    DOT             reduce using rule 69 (primary -> lhs .)
+    LEFT_BRACKET    reduce using rule 69 (primary -> lhs .)
+    ARITH_OP        reduce using rule 69 (primary -> lhs .)
+    BOOL_OP         reduce using rule 69 (primary -> lhs .)
+    COMMA           reduce using rule 69 (primary -> lhs .)
+    RIGHT_PAR       reduce using rule 69 (primary -> lhs .)
+    SEMICOLON       reduce using rule 69 (primary -> lhs .)
+    RIGHT_BRACKET   reduce using rule 69 (primary -> lhs .)
+    EQUALS          shift and go to state 130
+    PLUS_PLUS       shift and go to state 131
+    MINUS_MINUS     shift and go to state 132
+
+
+state 116
+
+    (87) expr -> UNARY_OP . expr
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 141
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 117
+
+    (83) expr -> assign .
+
+    ARITH_OP        reduce using rule 83 (expr -> assign .)
+    BOOL_OP         reduce using rule 83 (expr -> assign .)
+    COMMA           reduce using rule 83 (expr -> assign .)
+    RIGHT_PAR       reduce using rule 83 (expr -> assign .)
+    SEMICOLON       reduce using rule 83 (expr -> assign .)
+    RIGHT_BRACKET   reduce using rule 83 (expr -> assign .)
+
+
+state 118
+
+    (47) stmt -> WHILE LEFT_PAR . expr RIGHT_PAR stmt
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 142
+    primary                        shift and go to state 107
+    literal                        shift and go to state 81
+    array_access                   shift and go to state 75
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 119
+
+    (68) primary -> NEW ID . LEFT_PAR arguments_opt RIGHT_PAR
+
+    LEFT_PAR        shift and go to state 143
+
+
+state 120
+
+    (50) stmt -> stmt_expr SEMICOLON .
+
+    IF              reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    WHILE           reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    FOR             reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    RETURN          reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    BREAK           reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    CONTINUE        reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    SEMICOLON       reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    LEFT_BRACE      reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    PLUS_PLUS       reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    MINUS_MINUS     reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    INT             reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    FLOAT           reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    BOOLEAN         reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    ID              reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    THIS            reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    SUPER           reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    LEFT_PAR        reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    NEW             reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    INT_CONST       reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    FLOAT_CONST     reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    STRING_CONST    reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    NULL            reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    TRUE            reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    FALSE           reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+    ELSE            reduce using rule 50 (stmt -> stmt_expr SEMICOLON .)
+
+
+state 121
+
+    (81) method_invocation -> field_access LEFT_PAR . arguments_opt RIGHT_PAR
+    (71) arguments_opt -> . empty
+    (72) arguments_opt -> . arguments
+    (2) empty -> .
+    (73) arguments -> . expr more_expr
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    field_access                   shift and go to state 112
+    new_array                      shift and go to state 106
+    expr                           shift and go to state 147
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    arguments                      shift and go to state 144
+    arguments_opt                  shift and go to state 146
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+    empty                          shift and go to state 145
+
+state 122
+
+    (48) stmt -> FOR LEFT_PAR . stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (102) stmt_expr_opt -> . empty
+    (103) stmt_expr_opt -> . stmt_expr
+    (2) empty -> .
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    ID              shift and go to state 113
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    primary                        shift and go to state 88
+    stmt_expr_opt                  shift and go to state 149
+    stmt_expr                      shift and go to state 148
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    method_invocation              shift and go to state 82
+    array_access                   shift and go to state 75
+    assign                         shift and go to state 102
+    empty                          shift and go to state 150
+
+state 123
+
+    (45) stmt_star -> stmt stmt_star .
+
+    RIGHT_BRACE     reduce using rule 45 (stmt_star -> stmt stmt_star .)
+
+
+state 124
+
+    (80) array_access -> primary LEFT_BRACKET . expr RIGHT_BRACKET
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 151
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 125
+
+    (78) field_access -> primary DOT . ID
+
+    ID              shift and go to state 152
+
+
+state 126
+
+    (43) block -> LEFT_BRACE stmt_star RIGHT_BRACE .
+
+    IF              reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    WHILE           reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    FOR             reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    RETURN          reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    BREAK           reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    CONTINUE        reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    SEMICOLON       reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    LEFT_BRACE      reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    PLUS_PLUS       reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    MINUS_MINUS     reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    INT             reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    FLOAT           reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    BOOLEAN         reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    ID              reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    THIS            reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    SUPER           reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    LEFT_PAR        reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    NEW             reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    INT_CONST       reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    FLOAT_CONST     reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    STRING_CONST    reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    NULL            reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    TRUE            reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    FALSE           reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    RIGHT_BRACE     reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    ELSE            reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    PUBLIC          reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    PRIVATE         reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    STATIC          reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+    VOID            reduce using rule 43 (block -> LEFT_BRACE stmt_star RIGHT_BRACE .)
+
+
+state 127
+
+    (46) stmt -> IF LEFT_PAR . expr RIGHT_PAR stmt else_opt
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 153
+    primary                        shift and go to state 107
+    literal                        shift and go to state 81
+    array_access                   shift and go to state 75
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 128
+
+    (51) stmt -> BREAK SEMICOLON .
+
+    IF              reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    WHILE           reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    FOR             reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    RETURN          reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    BREAK           reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    CONTINUE        reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    SEMICOLON       reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    LEFT_BRACE      reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    PLUS_PLUS       reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    MINUS_MINUS     reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    INT             reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    FLOAT           reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    BOOLEAN         reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    ID              reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    THIS            reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    SUPER           reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    LEFT_PAR        reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    NEW             reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    INT_CONST       reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    FLOAT_CONST     reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    STRING_CONST    reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    NULL            reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    TRUE            reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    FALSE           reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+    ELSE            reduce using rule 51 (stmt -> BREAK SEMICOLON .)
+
+
+state 129
+
+    (52) stmt -> CONTINUE SEMICOLON .
+
+    IF              reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    WHILE           reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    FOR             reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    RETURN          reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    BREAK           reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    CONTINUE        reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    SEMICOLON       reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    LEFT_BRACE      reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    PLUS_PLUS       reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    MINUS_MINUS     reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    INT             reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    FLOAT           reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    BOOLEAN         reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    ID              reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    THIS            reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    SUPER           reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    LEFT_PAR        reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    NEW             reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    INT_CONST       reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    FLOAT_CONST     reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    STRING_CONST    reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    NULL            reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    TRUE            reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    FALSE           reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+    ELSE            reduce using rule 52 (stmt -> CONTINUE SEMICOLON .)
+
+
+state 130
+
+    (88) assign -> lhs EQUALS . expr
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 154
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 131
+
+    (89) assign -> lhs PLUS_PLUS .
+
+    RIGHT_PAR       reduce using rule 89 (assign -> lhs PLUS_PLUS .)
+    ARITH_OP        reduce using rule 89 (assign -> lhs PLUS_PLUS .)
+    BOOL_OP         reduce using rule 89 (assign -> lhs PLUS_PLUS .)
+    SEMICOLON       reduce using rule 89 (assign -> lhs PLUS_PLUS .)
+    COMMA           reduce using rule 89 (assign -> lhs PLUS_PLUS .)
+    RIGHT_BRACKET   reduce using rule 89 (assign -> lhs PLUS_PLUS .)
+
+
+state 132
+
+    (91) assign -> lhs MINUS_MINUS .
+
+    RIGHT_PAR       reduce using rule 91 (assign -> lhs MINUS_MINUS .)
+    ARITH_OP        reduce using rule 91 (assign -> lhs MINUS_MINUS .)
+    BOOL_OP         reduce using rule 91 (assign -> lhs MINUS_MINUS .)
+    SEMICOLON       reduce using rule 91 (assign -> lhs MINUS_MINUS .)
+    COMMA           reduce using rule 91 (assign -> lhs MINUS_MINUS .)
+    RIGHT_BRACKET   reduce using rule 91 (assign -> lhs MINUS_MINUS .)
+
+
+state 133
+
+    (92) assign -> MINUS_MINUS lhs .
+    (69) primary -> lhs .
+
+    RIGHT_PAR       reduce using rule 92 (assign -> MINUS_MINUS lhs .)
+    ARITH_OP        reduce using rule 92 (assign -> MINUS_MINUS lhs .)
+    BOOL_OP         reduce using rule 92 (assign -> MINUS_MINUS lhs .)
+    SEMICOLON       reduce using rule 92 (assign -> MINUS_MINUS lhs .)
+    COMMA           reduce using rule 92 (assign -> MINUS_MINUS lhs .)
+    RIGHT_BRACKET   reduce using rule 92 (assign -> MINUS_MINUS lhs .)
+    DOT             reduce using rule 69 (primary -> lhs .)
+    LEFT_BRACKET    reduce using rule 69 (primary -> lhs .)
+
+
+state 134
+
+    (90) assign -> PLUS_PLUS lhs .
+    (69) primary -> lhs .
+
+    RIGHT_PAR       reduce using rule 90 (assign -> PLUS_PLUS lhs .)
+    ARITH_OP        reduce using rule 90 (assign -> PLUS_PLUS lhs .)
+    BOOL_OP         reduce using rule 90 (assign -> PLUS_PLUS lhs .)
+    SEMICOLON       reduce using rule 90 (assign -> PLUS_PLUS lhs .)
+    COMMA           reduce using rule 90 (assign -> PLUS_PLUS lhs .)
+    RIGHT_BRACKET   reduce using rule 90 (assign -> PLUS_PLUS lhs .)
+    DOT             reduce using rule 69 (primary -> lhs .)
+    LEFT_BRACKET    reduce using rule 69 (primary -> lhs .)
+
+
+state 135
+
+    (67) primary -> LEFT_PAR expr . RIGHT_PAR
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+    RIGHT_PAR       shift and go to state 155
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+
+state 136
+
+    (93) new_array -> NEW type . array_expr_plus array_empty_star
+    (94) array_expr_plus -> . array_expr array_expr_plus
+    (95) array_expr_plus -> . array_expr
+    (96) array_expr -> . LEFT_BRACKET expr RIGHT_BRACKET
+
+    LEFT_BRACKET    shift and go to state 158
+
+    array_expr_plus                shift and go to state 156
+    array_expr                     shift and go to state 157
+
+state 137
+
+    (68) primary -> NEW ID . LEFT_PAR arguments_opt RIGHT_PAR
+    (25) type -> ID .
+
+    LEFT_PAR        shift and go to state 143
+    LEFT_BRACKET    reduce using rule 25 (type -> ID .)
+
+
+state 138
+
+    (49) stmt -> RETURN expr_opt SEMICOLON .
+
+    IF              reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    WHILE           reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    FOR             reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    RETURN          reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    BREAK           reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    CONTINUE        reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    SEMICOLON       reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    LEFT_BRACE      reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    PLUS_PLUS       reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    MINUS_MINUS     reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    INT             reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    FLOAT           reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    BOOLEAN         reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    ID              reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    THIS            reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    SUPER           reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    LEFT_PAR        reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    NEW             reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    INT_CONST       reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    FLOAT_CONST     reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    STRING_CONST    reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    NULL            reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    TRUE            reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    FALSE           reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    RIGHT_BRACE     reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+    ELSE            reduce using rule 49 (stmt -> RETURN expr_opt SEMICOLON .)
+
+
+state 139
+
+    (85) expr -> expr ARITH_OP . expr
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 159
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 140
+
+    (86) expr -> expr BOOL_OP . expr
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 160
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 141
+
+    (87) expr -> UNARY_OP expr .
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+  ! shift/reduce conflict for ARITH_OP resolved as shift
+  ! shift/reduce conflict for BOOL_OP resolved as shift
+    COMMA           reduce using rule 87 (expr -> UNARY_OP expr .)
+    RIGHT_PAR       reduce using rule 87 (expr -> UNARY_OP expr .)
+    SEMICOLON       reduce using rule 87 (expr -> UNARY_OP expr .)
+    RIGHT_BRACKET   reduce using rule 87 (expr -> UNARY_OP expr .)
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+  ! ARITH_OP        [ reduce using rule 87 (expr -> UNARY_OP expr .) ]
+  ! BOOL_OP         [ reduce using rule 87 (expr -> UNARY_OP expr .) ]
+
+
+state 142
+
+    (47) stmt -> WHILE LEFT_PAR expr . RIGHT_PAR stmt
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+    RIGHT_PAR       shift and go to state 161
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+
+state 143
+
+    (68) primary -> NEW ID LEFT_PAR . arguments_opt RIGHT_PAR
+    (71) arguments_opt -> . empty
+    (72) arguments_opt -> . arguments
+    (2) empty -> .
+    (73) arguments -> . expr more_expr
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 147
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    arguments                      shift and go to state 144
+    arguments_opt                  shift and go to state 162
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+    empty                          shift and go to state 145
+
+state 144
+
+    (72) arguments_opt -> arguments .
+
+    RIGHT_PAR       reduce using rule 72 (arguments_opt -> arguments .)
+
+
+state 145
+
+    (71) arguments_opt -> empty .
+
+    RIGHT_PAR       reduce using rule 71 (arguments_opt -> empty .)
+
+
+state 146
+
+    (81) method_invocation -> field_access LEFT_PAR arguments_opt . RIGHT_PAR
+
+    RIGHT_PAR       shift and go to state 163
+
+
+state 147
+
+    (73) arguments -> expr . more_expr
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+    (74) more_expr -> . empty
+    (75) more_expr -> . COMMA expr more_expr
+    (2) empty -> .
+
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+    COMMA           shift and go to state 164
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+
+    empty                          shift and go to state 166
+    more_expr                      shift and go to state 165
+
+state 148
+
+    (103) stmt_expr_opt -> stmt_expr .
+
+    RIGHT_PAR       reduce using rule 103 (stmt_expr_opt -> stmt_expr .)
+    SEMICOLON       reduce using rule 103 (stmt_expr_opt -> stmt_expr .)
+
+
+state 149
+
+    (48) stmt -> FOR LEFT_PAR stmt_expr_opt . SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+
+    SEMICOLON       shift and go to state 167
+
+
+state 150
+
+    (102) stmt_expr_opt -> empty .
+
+    RIGHT_PAR       reduce using rule 102 (stmt_expr_opt -> empty .)
+    SEMICOLON       reduce using rule 102 (stmt_expr_opt -> empty .)
+
+
+state 151
+
+    (80) array_access -> primary LEFT_BRACKET expr . RIGHT_BRACKET
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+    RIGHT_BRACKET   shift and go to state 168
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+
+state 152
+
+    (78) field_access -> primary DOT ID .
+
+    LEFT_PAR        reduce using rule 78 (field_access -> primary DOT ID .)
+    EQUALS          reduce using rule 78 (field_access -> primary DOT ID .)
+    PLUS_PLUS       reduce using rule 78 (field_access -> primary DOT ID .)
+    MINUS_MINUS     reduce using rule 78 (field_access -> primary DOT ID .)
+    DOT             reduce using rule 78 (field_access -> primary DOT ID .)
+    LEFT_BRACKET    reduce using rule 78 (field_access -> primary DOT ID .)
+    RIGHT_BRACKET   reduce using rule 78 (field_access -> primary DOT ID .)
+    ARITH_OP        reduce using rule 78 (field_access -> primary DOT ID .)
+    BOOL_OP         reduce using rule 78 (field_access -> primary DOT ID .)
+    RIGHT_PAR       reduce using rule 78 (field_access -> primary DOT ID .)
+    SEMICOLON       reduce using rule 78 (field_access -> primary DOT ID .)
+    COMMA           reduce using rule 78 (field_access -> primary DOT ID .)
+
+
+state 153
+
+    (46) stmt -> IF LEFT_PAR expr . RIGHT_PAR stmt else_opt
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+    RIGHT_PAR       shift and go to state 169
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+
+state 154
+
+    (88) assign -> lhs EQUALS expr .
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+  ! shift/reduce conflict for ARITH_OP resolved as shift
+  ! shift/reduce conflict for BOOL_OP resolved as shift
+    RIGHT_PAR       reduce using rule 88 (assign -> lhs EQUALS expr .)
+    SEMICOLON       reduce using rule 88 (assign -> lhs EQUALS expr .)
+    COMMA           reduce using rule 88 (assign -> lhs EQUALS expr .)
+    RIGHT_BRACKET   reduce using rule 88 (assign -> lhs EQUALS expr .)
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+  ! ARITH_OP        [ reduce using rule 88 (assign -> lhs EQUALS expr .) ]
+  ! BOOL_OP         [ reduce using rule 88 (assign -> lhs EQUALS expr .) ]
+
+
+state 155
+
+    (67) primary -> LEFT_PAR expr RIGHT_PAR .
+
+    DOT             reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+    LEFT_BRACKET    reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+    ARITH_OP        reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+    BOOL_OP         reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+    COMMA           reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+    RIGHT_PAR       reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+    SEMICOLON       reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+    RIGHT_BRACKET   reduce using rule 67 (primary -> LEFT_PAR expr RIGHT_PAR .)
+
+
+state 156
+
+    (93) new_array -> NEW type array_expr_plus . array_empty_star
+    (97) array_empty_star -> . empty
+    (98) array_empty_star -> . array_empty array_empty_star
+    (2) empty -> .
+    (99) array_empty -> . LEFT_BRACKET RIGHT_BRACKET
+
+    ARITH_OP        reduce using rule 2 (empty -> .)
+    BOOL_OP         reduce using rule 2 (empty -> .)
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    COMMA           reduce using rule 2 (empty -> .)
+    RIGHT_BRACKET   reduce using rule 2 (empty -> .)
+    LEFT_BRACKET    shift and go to state 172
+
+    array_empty_star               shift and go to state 170
+    array_empty                    shift and go to state 171
+    empty                          shift and go to state 173
+
+state 157
+
+    (94) array_expr_plus -> array_expr . array_expr_plus
+    (95) array_expr_plus -> array_expr .
+    (94) array_expr_plus -> . array_expr array_expr_plus
+    (95) array_expr_plus -> . array_expr
+    (96) array_expr -> . LEFT_BRACKET expr RIGHT_BRACKET
+
+  ! shift/reduce conflict for LEFT_BRACKET resolved as shift
+    ARITH_OP        reduce using rule 95 (array_expr_plus -> array_expr .)
+    BOOL_OP         reduce using rule 95 (array_expr_plus -> array_expr .)
+    SEMICOLON       reduce using rule 95 (array_expr_plus -> array_expr .)
+    RIGHT_PAR       reduce using rule 95 (array_expr_plus -> array_expr .)
+    COMMA           reduce using rule 95 (array_expr_plus -> array_expr .)
+    RIGHT_BRACKET   reduce using rule 95 (array_expr_plus -> array_expr .)
+    LEFT_BRACKET    shift and go to state 158
+
+  ! LEFT_BRACKET    [ reduce using rule 95 (array_expr_plus -> array_expr .) ]
+
+    array_expr                     shift and go to state 157
+    array_expr_plus                shift and go to state 174
+
+state 158
+
+    (96) array_expr -> LEFT_BRACKET . expr RIGHT_BRACKET
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 175
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 159
+
+    (85) expr -> expr ARITH_OP expr .
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+  ! shift/reduce conflict for ARITH_OP resolved as shift
+  ! shift/reduce conflict for BOOL_OP resolved as shift
+    COMMA           reduce using rule 85 (expr -> expr ARITH_OP expr .)
+    RIGHT_PAR       reduce using rule 85 (expr -> expr ARITH_OP expr .)
+    SEMICOLON       reduce using rule 85 (expr -> expr ARITH_OP expr .)
+    RIGHT_BRACKET   reduce using rule 85 (expr -> expr ARITH_OP expr .)
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+  ! ARITH_OP        [ reduce using rule 85 (expr -> expr ARITH_OP expr .) ]
+  ! BOOL_OP         [ reduce using rule 85 (expr -> expr ARITH_OP expr .) ]
+
+
+state 160
+
+    (86) expr -> expr BOOL_OP expr .
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+  ! shift/reduce conflict for ARITH_OP resolved as shift
+  ! shift/reduce conflict for BOOL_OP resolved as shift
+    COMMA           reduce using rule 86 (expr -> expr BOOL_OP expr .)
+    RIGHT_PAR       reduce using rule 86 (expr -> expr BOOL_OP expr .)
+    SEMICOLON       reduce using rule 86 (expr -> expr BOOL_OP expr .)
+    RIGHT_BRACKET   reduce using rule 86 (expr -> expr BOOL_OP expr .)
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+  ! ARITH_OP        [ reduce using rule 86 (expr -> expr BOOL_OP expr .) ]
+  ! BOOL_OP         [ reduce using rule 86 (expr -> expr BOOL_OP expr .) ]
+
+
+state 161
+
+    (47) stmt -> WHILE LEFT_PAR expr RIGHT_PAR . stmt
+    (46) stmt -> . IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+    (47) stmt -> . WHILE LEFT_PAR expr RIGHT_PAR stmt
+    (48) stmt -> . FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (49) stmt -> . RETURN expr_opt SEMICOLON
+    (50) stmt -> . stmt_expr SEMICOLON
+    (51) stmt -> . BREAK SEMICOLON
+    (52) stmt -> . CONTINUE SEMICOLON
+    (53) stmt -> . block
+    (54) stmt -> . var_decl
+    (55) stmt -> . SEMICOLON
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+    (21) var_decl -> . type variables SEMICOLON
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    IF              shift and go to state 91
+    WHILE           shift and go to state 72
+    FOR             shift and go to state 86
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 94
+    CONTINUE        shift and go to state 96
+    SEMICOLON       shift and go to state 78
+    LEFT_BRACE      shift and go to state 67
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 90
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    array_access                   shift and go to state 75
+    stmt_expr                      shift and go to state 80
+    primary                        shift and go to state 88
+    stmt                           shift and go to state 176
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    var_decl                       shift and go to state 93
+    type                           shift and go to state 83
+    method_invocation              shift and go to state 82
+    assign                         shift and go to state 102
+    block                          shift and go to state 103
+
+state 162
+
+    (68) primary -> NEW ID LEFT_PAR arguments_opt . RIGHT_PAR
+
+    RIGHT_PAR       shift and go to state 177
+
+
+state 163
+
+    (81) method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .
+
+    DOT             reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+    LEFT_BRACKET    reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+    ARITH_OP        reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+    BOOL_OP         reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+    SEMICOLON       reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+    RIGHT_PAR       reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+    COMMA           reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+    RIGHT_BRACKET   reduce using rule 81 (method_invocation -> field_access LEFT_PAR arguments_opt RIGHT_PAR .)
+
+
+state 164
+
+    (75) more_expr -> COMMA . expr more_expr
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 178
+    primary                        shift and go to state 107
+    array_access                   shift and go to state 75
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+
+state 165
+
+    (73) arguments -> expr more_expr .
+
+    RIGHT_PAR       reduce using rule 73 (arguments -> expr more_expr .)
+
+
+state 166
+
+    (74) more_expr -> empty .
+
+    RIGHT_PAR       reduce using rule 74 (more_expr -> empty .)
+
+
+state 167
+
+    (48) stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON . expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (104) expr_opt -> . empty
+    (105) expr_opt -> . expr
+    (2) empty -> .
+    (82) expr -> . primary
+    (83) expr -> . assign
+    (84) expr -> . new_array
+    (85) expr -> . expr ARITH_OP expr
+    (86) expr -> . expr BOOL_OP expr
+    (87) expr -> . UNARY_OP expr
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (93) new_array -> . NEW type array_expr_plus array_empty_star
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    UNARY_OP        shift and go to state 116
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 108
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+    ID              shift and go to state 113
+
+    new_array                      shift and go to state 106
+    array_access                   shift and go to state 75
+    field_access                   shift and go to state 112
+    expr                           shift and go to state 114
+    primary                        shift and go to state 107
+    literal                        shift and go to state 81
+    expr_opt                       shift and go to state 179
+    lhs                            shift and go to state 115
+    method_invocation              shift and go to state 110
+    assign                         shift and go to state 117
+    empty                          shift and go to state 111
+
+state 168
+
+    (80) array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .
+
+    EQUALS          reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    PLUS_PLUS       reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    MINUS_MINUS     reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    DOT             reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    LEFT_BRACKET    reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    RIGHT_PAR       reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    ARITH_OP        reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    BOOL_OP         reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    SEMICOLON       reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    COMMA           reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+    RIGHT_BRACKET   reduce using rule 80 (array_access -> primary LEFT_BRACKET expr RIGHT_BRACKET .)
+
+
+state 169
+
+    (46) stmt -> IF LEFT_PAR expr RIGHT_PAR . stmt else_opt
+    (46) stmt -> . IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+    (47) stmt -> . WHILE LEFT_PAR expr RIGHT_PAR stmt
+    (48) stmt -> . FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (49) stmt -> . RETURN expr_opt SEMICOLON
+    (50) stmt -> . stmt_expr SEMICOLON
+    (51) stmt -> . BREAK SEMICOLON
+    (52) stmt -> . CONTINUE SEMICOLON
+    (53) stmt -> . block
+    (54) stmt -> . var_decl
+    (55) stmt -> . SEMICOLON
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+    (21) var_decl -> . type variables SEMICOLON
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    IF              shift and go to state 91
+    WHILE           shift and go to state 72
+    FOR             shift and go to state 86
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 94
+    CONTINUE        shift and go to state 96
+    SEMICOLON       shift and go to state 78
+    LEFT_BRACE      shift and go to state 67
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 90
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    array_access                   shift and go to state 75
+    stmt_expr                      shift and go to state 80
+    primary                        shift and go to state 88
+    stmt                           shift and go to state 180
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    var_decl                       shift and go to state 93
+    type                           shift and go to state 83
+    method_invocation              shift and go to state 82
+    assign                         shift and go to state 102
+    block                          shift and go to state 103
+
+state 170
+
+    (93) new_array -> NEW type array_expr_plus array_empty_star .
+
+    ARITH_OP        reduce using rule 93 (new_array -> NEW type array_expr_plus array_empty_star .)
+    BOOL_OP         reduce using rule 93 (new_array -> NEW type array_expr_plus array_empty_star .)
+    SEMICOLON       reduce using rule 93 (new_array -> NEW type array_expr_plus array_empty_star .)
+    RIGHT_PAR       reduce using rule 93 (new_array -> NEW type array_expr_plus array_empty_star .)
+    COMMA           reduce using rule 93 (new_array -> NEW type array_expr_plus array_empty_star .)
+    RIGHT_BRACKET   reduce using rule 93 (new_array -> NEW type array_expr_plus array_empty_star .)
+
+
+state 171
+
+    (98) array_empty_star -> array_empty . array_empty_star
+    (97) array_empty_star -> . empty
+    (98) array_empty_star -> . array_empty array_empty_star
+    (2) empty -> .
+    (99) array_empty -> . LEFT_BRACKET RIGHT_BRACKET
+
+    ARITH_OP        reduce using rule 2 (empty -> .)
+    BOOL_OP         reduce using rule 2 (empty -> .)
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    COMMA           reduce using rule 2 (empty -> .)
+    RIGHT_BRACKET   reduce using rule 2 (empty -> .)
+    LEFT_BRACKET    shift and go to state 172
+
+    array_empty                    shift and go to state 171
+    array_empty_star               shift and go to state 181
+    empty                          shift and go to state 173
+
+state 172
+
+    (99) array_empty -> LEFT_BRACKET . RIGHT_BRACKET
+
+    RIGHT_BRACKET   shift and go to state 182
+
+
+state 173
+
+    (97) array_empty_star -> empty .
+
+    ARITH_OP        reduce using rule 97 (array_empty_star -> empty .)
+    BOOL_OP         reduce using rule 97 (array_empty_star -> empty .)
+    SEMICOLON       reduce using rule 97 (array_empty_star -> empty .)
+    RIGHT_PAR       reduce using rule 97 (array_empty_star -> empty .)
+    COMMA           reduce using rule 97 (array_empty_star -> empty .)
+    RIGHT_BRACKET   reduce using rule 97 (array_empty_star -> empty .)
+
+
+state 174
+
+    (94) array_expr_plus -> array_expr array_expr_plus .
+
+    LEFT_BRACKET    reduce using rule 94 (array_expr_plus -> array_expr array_expr_plus .)
+    ARITH_OP        reduce using rule 94 (array_expr_plus -> array_expr array_expr_plus .)
+    BOOL_OP         reduce using rule 94 (array_expr_plus -> array_expr array_expr_plus .)
+    SEMICOLON       reduce using rule 94 (array_expr_plus -> array_expr array_expr_plus .)
+    RIGHT_PAR       reduce using rule 94 (array_expr_plus -> array_expr array_expr_plus .)
+    COMMA           reduce using rule 94 (array_expr_plus -> array_expr array_expr_plus .)
+    RIGHT_BRACKET   reduce using rule 94 (array_expr_plus -> array_expr array_expr_plus .)
+
+
+state 175
+
+    (96) array_expr -> LEFT_BRACKET expr . RIGHT_BRACKET
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+
+    RIGHT_BRACKET   shift and go to state 183
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+
+
+state 176
+
+    (47) stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .
+
+    IF              reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    WHILE           reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    FOR             reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    RETURN          reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    BREAK           reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    CONTINUE        reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    SEMICOLON       reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    LEFT_BRACE      reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    PLUS_PLUS       reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    MINUS_MINUS     reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    INT             reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    FLOAT           reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    BOOLEAN         reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    ID              reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    THIS            reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    SUPER           reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    LEFT_PAR        reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    NEW             reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    INT_CONST       reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    FLOAT_CONST     reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    STRING_CONST    reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    NULL            reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    TRUE            reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    FALSE           reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    RIGHT_BRACE     reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+    ELSE            reduce using rule 47 (stmt -> WHILE LEFT_PAR expr RIGHT_PAR stmt .)
+
+
+state 177
+
+    (68) primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .
+
+    DOT             reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+    LEFT_BRACKET    reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+    ARITH_OP        reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+    BOOL_OP         reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+    COMMA           reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+    RIGHT_PAR       reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+    SEMICOLON       reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+    RIGHT_BRACKET   reduce using rule 68 (primary -> NEW ID LEFT_PAR arguments_opt RIGHT_PAR .)
+
+
+state 178
+
+    (75) more_expr -> COMMA expr . more_expr
+    (85) expr -> expr . ARITH_OP expr
+    (86) expr -> expr . BOOL_OP expr
+    (74) more_expr -> . empty
+    (75) more_expr -> . COMMA expr more_expr
+    (2) empty -> .
+
+    ARITH_OP        shift and go to state 139
+    BOOL_OP         shift and go to state 140
+    COMMA           shift and go to state 164
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+
+    empty                          shift and go to state 166
+    more_expr                      shift and go to state 184
+
+state 179
+
+    (48) stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt . SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+
+    SEMICOLON       shift and go to state 185
+
+
+state 180
+
+    (46) stmt -> IF LEFT_PAR expr RIGHT_PAR stmt . else_opt
+    (56) else_opt -> . empty
+    (57) else_opt -> . ELSE stmt
+    (2) empty -> .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 186
+    IF              reduce using rule 2 (empty -> .)
+    WHILE           reduce using rule 2 (empty -> .)
+    FOR             reduce using rule 2 (empty -> .)
+    RETURN          reduce using rule 2 (empty -> .)
+    BREAK           reduce using rule 2 (empty -> .)
+    CONTINUE        reduce using rule 2 (empty -> .)
+    SEMICOLON       reduce using rule 2 (empty -> .)
+    LEFT_BRACE      reduce using rule 2 (empty -> .)
+    PLUS_PLUS       reduce using rule 2 (empty -> .)
+    MINUS_MINUS     reduce using rule 2 (empty -> .)
+    INT             reduce using rule 2 (empty -> .)
+    FLOAT           reduce using rule 2 (empty -> .)
+    BOOLEAN         reduce using rule 2 (empty -> .)
+    ID              reduce using rule 2 (empty -> .)
+    THIS            reduce using rule 2 (empty -> .)
+    SUPER           reduce using rule 2 (empty -> .)
+    LEFT_PAR        reduce using rule 2 (empty -> .)
+    NEW             reduce using rule 2 (empty -> .)
+    INT_CONST       reduce using rule 2 (empty -> .)
+    FLOAT_CONST     reduce using rule 2 (empty -> .)
+    STRING_CONST    reduce using rule 2 (empty -> .)
+    NULL            reduce using rule 2 (empty -> .)
+    TRUE            reduce using rule 2 (empty -> .)
+    FALSE           reduce using rule 2 (empty -> .)
+    RIGHT_BRACE     reduce using rule 2 (empty -> .)
+
+  ! ELSE            [ reduce using rule 2 (empty -> .) ]
+
+    empty                          shift and go to state 188
+    else_opt                       shift and go to state 187
+
+state 181
+
+    (98) array_empty_star -> array_empty array_empty_star .
+
+    ARITH_OP        reduce using rule 98 (array_empty_star -> array_empty array_empty_star .)
+    BOOL_OP         reduce using rule 98 (array_empty_star -> array_empty array_empty_star .)
+    SEMICOLON       reduce using rule 98 (array_empty_star -> array_empty array_empty_star .)
+    RIGHT_PAR       reduce using rule 98 (array_empty_star -> array_empty array_empty_star .)
+    COMMA           reduce using rule 98 (array_empty_star -> array_empty array_empty_star .)
+    RIGHT_BRACKET   reduce using rule 98 (array_empty_star -> array_empty array_empty_star .)
+
+
+state 182
+
+    (99) array_empty -> LEFT_BRACKET RIGHT_BRACKET .
+
+    LEFT_BRACKET    reduce using rule 99 (array_empty -> LEFT_BRACKET RIGHT_BRACKET .)
+    ARITH_OP        reduce using rule 99 (array_empty -> LEFT_BRACKET RIGHT_BRACKET .)
+    BOOL_OP         reduce using rule 99 (array_empty -> LEFT_BRACKET RIGHT_BRACKET .)
+    SEMICOLON       reduce using rule 99 (array_empty -> LEFT_BRACKET RIGHT_BRACKET .)
+    RIGHT_PAR       reduce using rule 99 (array_empty -> LEFT_BRACKET RIGHT_BRACKET .)
+    COMMA           reduce using rule 99 (array_empty -> LEFT_BRACKET RIGHT_BRACKET .)
+    RIGHT_BRACKET   reduce using rule 99 (array_empty -> LEFT_BRACKET RIGHT_BRACKET .)
+
+
+state 183
+
+    (96) array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .
+
+    LEFT_BRACKET    reduce using rule 96 (array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .)
+    ARITH_OP        reduce using rule 96 (array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .)
+    BOOL_OP         reduce using rule 96 (array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .)
+    SEMICOLON       reduce using rule 96 (array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .)
+    RIGHT_PAR       reduce using rule 96 (array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .)
+    COMMA           reduce using rule 96 (array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .)
+    RIGHT_BRACKET   reduce using rule 96 (array_expr -> LEFT_BRACKET expr RIGHT_BRACKET .)
+
+
+state 184
+
+    (75) more_expr -> COMMA expr more_expr .
+
+    RIGHT_PAR       reduce using rule 75 (more_expr -> COMMA expr more_expr .)
+
+
+state 185
+
+    (48) stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON . stmt_expr_opt RIGHT_PAR stmt
+    (102) stmt_expr_opt -> . empty
+    (103) stmt_expr_opt -> . stmt_expr
+    (2) empty -> .
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    RIGHT_PAR       reduce using rule 2 (empty -> .)
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    ID              shift and go to state 113
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    primary                        shift and go to state 88
+    stmt_expr_opt                  shift and go to state 189
+    stmt_expr                      shift and go to state 148
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    method_invocation              shift and go to state 82
+    array_access                   shift and go to state 75
+    assign                         shift and go to state 102
+    empty                          shift and go to state 150
+
+state 186
+
+    (57) else_opt -> ELSE . stmt
+    (46) stmt -> . IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+    (47) stmt -> . WHILE LEFT_PAR expr RIGHT_PAR stmt
+    (48) stmt -> . FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (49) stmt -> . RETURN expr_opt SEMICOLON
+    (50) stmt -> . stmt_expr SEMICOLON
+    (51) stmt -> . BREAK SEMICOLON
+    (52) stmt -> . CONTINUE SEMICOLON
+    (53) stmt -> . block
+    (54) stmt -> . var_decl
+    (55) stmt -> . SEMICOLON
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+    (21) var_decl -> . type variables SEMICOLON
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    IF              shift and go to state 91
+    WHILE           shift and go to state 72
+    FOR             shift and go to state 86
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 94
+    CONTINUE        shift and go to state 96
+    SEMICOLON       shift and go to state 78
+    LEFT_BRACE      shift and go to state 67
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 90
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    array_access                   shift and go to state 75
+    stmt_expr                      shift and go to state 80
+    primary                        shift and go to state 88
+    stmt                           shift and go to state 190
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    var_decl                       shift and go to state 93
+    type                           shift and go to state 83
+    method_invocation              shift and go to state 82
+    assign                         shift and go to state 102
+    block                          shift and go to state 103
+
+state 187
+
+    (46) stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .
+
+    IF              reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    WHILE           reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    FOR             reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    RETURN          reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    BREAK           reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    CONTINUE        reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    SEMICOLON       reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    LEFT_BRACE      reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    PLUS_PLUS       reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    MINUS_MINUS     reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    INT             reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    FLOAT           reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    BOOLEAN         reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    ID              reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    THIS            reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    SUPER           reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    LEFT_PAR        reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    NEW             reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    INT_CONST       reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    FLOAT_CONST     reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    STRING_CONST    reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    NULL            reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    TRUE            reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    FALSE           reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    RIGHT_BRACE     reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+    ELSE            reduce using rule 46 (stmt -> IF LEFT_PAR expr RIGHT_PAR stmt else_opt .)
+
+
+state 188
+
+    (56) else_opt -> empty .
+
+    IF              reduce using rule 56 (else_opt -> empty .)
+    WHILE           reduce using rule 56 (else_opt -> empty .)
+    FOR             reduce using rule 56 (else_opt -> empty .)
+    RETURN          reduce using rule 56 (else_opt -> empty .)
+    BREAK           reduce using rule 56 (else_opt -> empty .)
+    CONTINUE        reduce using rule 56 (else_opt -> empty .)
+    SEMICOLON       reduce using rule 56 (else_opt -> empty .)
+    LEFT_BRACE      reduce using rule 56 (else_opt -> empty .)
+    PLUS_PLUS       reduce using rule 56 (else_opt -> empty .)
+    MINUS_MINUS     reduce using rule 56 (else_opt -> empty .)
+    INT             reduce using rule 56 (else_opt -> empty .)
+    FLOAT           reduce using rule 56 (else_opt -> empty .)
+    BOOLEAN         reduce using rule 56 (else_opt -> empty .)
+    ID              reduce using rule 56 (else_opt -> empty .)
+    THIS            reduce using rule 56 (else_opt -> empty .)
+    SUPER           reduce using rule 56 (else_opt -> empty .)
+    LEFT_PAR        reduce using rule 56 (else_opt -> empty .)
+    NEW             reduce using rule 56 (else_opt -> empty .)
+    INT_CONST       reduce using rule 56 (else_opt -> empty .)
+    FLOAT_CONST     reduce using rule 56 (else_opt -> empty .)
+    STRING_CONST    reduce using rule 56 (else_opt -> empty .)
+    NULL            reduce using rule 56 (else_opt -> empty .)
+    TRUE            reduce using rule 56 (else_opt -> empty .)
+    FALSE           reduce using rule 56 (else_opt -> empty .)
+    RIGHT_BRACE     reduce using rule 56 (else_opt -> empty .)
+    ELSE            reduce using rule 56 (else_opt -> empty .)
+
+
+state 189
+
+    (48) stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt . RIGHT_PAR stmt
+
+    RIGHT_PAR       shift and go to state 191
+
+
+state 190
+
+    (57) else_opt -> ELSE stmt .
+
+    IF              reduce using rule 57 (else_opt -> ELSE stmt .)
+    WHILE           reduce using rule 57 (else_opt -> ELSE stmt .)
+    FOR             reduce using rule 57 (else_opt -> ELSE stmt .)
+    RETURN          reduce using rule 57 (else_opt -> ELSE stmt .)
+    BREAK           reduce using rule 57 (else_opt -> ELSE stmt .)
+    CONTINUE        reduce using rule 57 (else_opt -> ELSE stmt .)
+    SEMICOLON       reduce using rule 57 (else_opt -> ELSE stmt .)
+    LEFT_BRACE      reduce using rule 57 (else_opt -> ELSE stmt .)
+    PLUS_PLUS       reduce using rule 57 (else_opt -> ELSE stmt .)
+    MINUS_MINUS     reduce using rule 57 (else_opt -> ELSE stmt .)
+    INT             reduce using rule 57 (else_opt -> ELSE stmt .)
+    FLOAT           reduce using rule 57 (else_opt -> ELSE stmt .)
+    BOOLEAN         reduce using rule 57 (else_opt -> ELSE stmt .)
+    ID              reduce using rule 57 (else_opt -> ELSE stmt .)
+    THIS            reduce using rule 57 (else_opt -> ELSE stmt .)
+    SUPER           reduce using rule 57 (else_opt -> ELSE stmt .)
+    LEFT_PAR        reduce using rule 57 (else_opt -> ELSE stmt .)
+    NEW             reduce using rule 57 (else_opt -> ELSE stmt .)
+    INT_CONST       reduce using rule 57 (else_opt -> ELSE stmt .)
+    FLOAT_CONST     reduce using rule 57 (else_opt -> ELSE stmt .)
+    STRING_CONST    reduce using rule 57 (else_opt -> ELSE stmt .)
+    NULL            reduce using rule 57 (else_opt -> ELSE stmt .)
+    TRUE            reduce using rule 57 (else_opt -> ELSE stmt .)
+    FALSE           reduce using rule 57 (else_opt -> ELSE stmt .)
+    RIGHT_BRACE     reduce using rule 57 (else_opt -> ELSE stmt .)
+    ELSE            reduce using rule 57 (else_opt -> ELSE stmt .)
+
+
+state 191
+
+    (48) stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR . stmt
+    (46) stmt -> . IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+    (47) stmt -> . WHILE LEFT_PAR expr RIGHT_PAR stmt
+    (48) stmt -> . FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
+    (49) stmt -> . RETURN expr_opt SEMICOLON
+    (50) stmt -> . stmt_expr SEMICOLON
+    (51) stmt -> . BREAK SEMICOLON
+    (52) stmt -> . CONTINUE SEMICOLON
+    (53) stmt -> . block
+    (54) stmt -> . var_decl
+    (55) stmt -> . SEMICOLON
+    (100) stmt_expr -> . assign
+    (101) stmt_expr -> . method_invocation
+    (43) block -> . LEFT_BRACE stmt_star RIGHT_BRACE
+    (21) var_decl -> . type variables SEMICOLON
+    (88) assign -> . lhs EQUALS expr
+    (89) assign -> . lhs PLUS_PLUS
+    (90) assign -> . PLUS_PLUS lhs
+    (91) assign -> . lhs MINUS_MINUS
+    (92) assign -> . MINUS_MINUS lhs
+    (81) method_invocation -> . field_access LEFT_PAR arguments_opt RIGHT_PAR
+    (22) type -> . INT
+    (23) type -> . FLOAT
+    (24) type -> . BOOLEAN
+    (25) type -> . ID
+    (76) lhs -> . field_access
+    (77) lhs -> . array_access
+    (78) field_access -> . primary DOT ID
+    (79) field_access -> . ID
+    (80) array_access -> . primary LEFT_BRACKET expr RIGHT_BRACKET
+    (64) primary -> . literal
+    (65) primary -> . THIS
+    (66) primary -> . SUPER
+    (67) primary -> . LEFT_PAR expr RIGHT_PAR
+    (68) primary -> . NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+    (69) primary -> . lhs
+    (70) primary -> . method_invocation
+    (58) literal -> . INT_CONST
+    (59) literal -> . FLOAT_CONST
+    (60) literal -> . STRING_CONST
+    (61) literal -> . NULL
+    (62) literal -> . TRUE
+    (63) literal -> . FALSE
+
+    IF              shift and go to state 91
+    WHILE           shift and go to state 72
+    FOR             shift and go to state 86
+    RETURN          shift and go to state 71
+    BREAK           shift and go to state 94
+    CONTINUE        shift and go to state 96
+    SEMICOLON       shift and go to state 78
+    LEFT_BRACE      shift and go to state 67
+    PLUS_PLUS       shift and go to state 99
+    MINUS_MINUS     shift and go to state 98
+    INT             shift and go to state 29
+    FLOAT           shift and go to state 28
+    BOOLEAN         shift and go to state 33
+    ID              shift and go to state 90
+    THIS            shift and go to state 95
+    SUPER           shift and go to state 101
+    LEFT_PAR        shift and go to state 100
+    NEW             shift and go to state 73
+    INT_CONST       shift and go to state 77
+    FLOAT_CONST     shift and go to state 104
+    STRING_CONST    shift and go to state 76
+    NULL            shift and go to state 74
+    TRUE            shift and go to state 79
+    FALSE           shift and go to state 92
+
+    field_access                   shift and go to state 85
+    array_access                   shift and go to state 75
+    stmt_expr                      shift and go to state 80
+    primary                        shift and go to state 88
+    stmt                           shift and go to state 192
+    literal                        shift and go to state 81
+    lhs                            shift and go to state 97
+    var_decl                       shift and go to state 93
+    type                           shift and go to state 83
+    method_invocation              shift and go to state 82
+    assign                         shift and go to state 102
+    block                          shift and go to state 103
+
+state 192
+
+    (48) stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .
+
+    IF              reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    WHILE           reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    FOR             reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    RETURN          reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    BREAK           reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    CONTINUE        reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    SEMICOLON       reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    LEFT_BRACE      reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    PLUS_PLUS       reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    MINUS_MINUS     reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    INT             reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    FLOAT           reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    BOOLEAN         reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    ID              reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    THIS            reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    SUPER           reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    LEFT_PAR        reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    NEW             reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    INT_CONST       reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    FLOAT_CONST     reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    STRING_CONST    reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    NULL            reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    TRUE            reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    FALSE           reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    RIGHT_BRACE     reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+    ELSE            reduce using rule 48 (stmt -> FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ID in state 34 resolved as shift
+WARNING: shift/reduce conflict for ARITH_OP in state 141 resolved as shift
+WARNING: shift/reduce conflict for BOOL_OP in state 141 resolved as shift
+WARNING: shift/reduce conflict for ARITH_OP in state 154 resolved as shift
+WARNING: shift/reduce conflict for BOOL_OP in state 154 resolved as shift
+WARNING: shift/reduce conflict for LEFT_BRACKET in state 157 resolved as shift
+WARNING: shift/reduce conflict for ARITH_OP in state 159 resolved as shift
+WARNING: shift/reduce conflict for BOOL_OP in state 159 resolved as shift
+WARNING: shift/reduce conflict for ARITH_OP in state 160 resolved as shift
+WARNING: shift/reduce conflict for BOOL_OP in state 160 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 180 resolved as shift

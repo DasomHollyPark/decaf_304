@@ -4,25 +4,6 @@ from decaflexer import tokens
 import ply.yacc as yacc
 
 ########################################################
-################### EMPTY STRING #######################
-########################################################
-
-def p_empty(p):
-	'''
-		empty : 
-	'''
-
-########################################################
-#################### START STATE #######################
-########################################################
-
-# Start state
-def p_start(p):
-	'''
-		start : program
-	'''
-
-########################################################
 #################### CLASS DECL ########################
 ########################################################
 
@@ -30,6 +11,12 @@ def p_start(p):
 def p_program(p):
 	'''
 		program : class_decl_star
+	'''
+
+# empty string (epsilon)
+def p_empty(p):
+	'''
+		empty : 
 	'''
 
 # class_decl*
@@ -42,7 +29,7 @@ def p_class_decl_star(p):
 # class_decl ::= class id (extends id)? { class_body_decl+ }
 def p_class_decl(p):
 	'''
-		class_decl : CLASS ID extends LEFT_BRACE class_body_decl_plus RIGHT_BRACE
+		class_decl : CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
 	'''
 
 # extends?
@@ -111,7 +98,7 @@ def p_variables(p):
 def p_more_variables(p):
 	'''
 		more_variables : empty
-									 | COMMA variable more_variables
+		more_variables : COMMA variable more_variables
 	'''
 
 def p_variable(p):
@@ -292,7 +279,7 @@ def p_assign(p):
 
 def p_new_array(p):
 	'''
-		new_array : NEW type array_expr_plus
+		new_array : NEW type array_expr_plus array_empty_star
 	'''
 
 def p_array_expr_plus(p):
