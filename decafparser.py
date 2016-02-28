@@ -31,7 +31,7 @@ def p_class_decl(p):
 	'''
 		class_decl : CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
 	'''
-	print p[1]
+	
 # extends?
 def p_extends_opt(p):
 	'''
