@@ -33,7 +33,7 @@ reserved = {
 }
 
 tokens = [
-	'ID',
+	'COMMENT', 'ID',
 	'COMMA', 'DOT',
 	'INT_CONST', 'FLOAT_CONST', 'STRING_CONST',
 	'EQUALS', 'SEMICOLON',
@@ -41,7 +41,7 @@ tokens = [
 	'LEFT_BRACE', 'RIGHT_BRACE',
 	'LEFT_BRACKET', 'RIGHT_BRACKET',
 	'PLUS_PLUS', 'MINUS_MINUS',
-	'ARITH_OP', 'BOOL_OP', 'UNARY_OP'
+	'ARITH_OP', 'BOOL_OP', 'UNARY_OP',
 ] + list(reserved.values())
 
 #Regular Expression rule
@@ -49,6 +49,14 @@ tokens = [
 def t_error(t):
   print("Illegal character '%s'" % t.value[0])
   t.lexer.skip(1)
+
+def t_COMMENT(t):
+	r'([/][*])(.*)([*][/])'
+	return "" # Ignore comments
+
+def t_BOOL_OP(t):
+	r'(([&][&])|([|][|])|([=][=])|([!][=])|([<][=])|([>][=])|([<])|([>]))'
+	return t
 
 def t_ID(t):
 	r'([a-zA-Z_][a-zA-Z_0-9]*)'
@@ -119,11 +127,7 @@ def t_MINUS_MINUS(t):
 	r'([-][-])'
 	return t
 
-def t_BOOL_OP(t):
-	r'(([&][&])|([|][|])|(==)|(!=)|(<=)|(>=)|(<)|(>))'
-	return t
-
-t_ignore  = ' \t\n'
+t_ignore = ' \t\n'
 
 lexer = lex.lex()
 

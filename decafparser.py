@@ -29,14 +29,8 @@ def p_class_decl_star(p):
 # class_decl ::= class id (extends id)? { class_body_decl+ }
 def p_class_decl(p):
 	'''
-		class_decl : CLASS ID extends_opt LEFT_BRACE class_body_decl_plus RIGHT_BRACE
-	'''
-
-# extends?
-def p_extends_opt(p):
-	'''
-		extends_opt : empty
-		extends_opt : extends
+		class_decl : CLASS ID LEFT_BRACE class_body_decl_plus RIGHT_BRACE
+		class_decl : CLASS ID extends LEFT_BRACE class_body_decl_plus RIGHT_BRACE
 	'''
 
 # extends ::= EXTENDS ID (not mentioned in pdf)
@@ -130,19 +124,16 @@ def p_array_dim(p):
 
 def p_method_decl(p):
 	'''
-		method_decl : modifier type ID LEFT_PAR formals_opt RIGHT_PAR block
-		method_decl : modifier VOID ID LEFT_PAR formals_opt RIGHT_PAR block
+		method_decl : modifier type ID LEFT_PAR formals RIGHT_PAR block
+		method_decl : modifier type ID LEFT_PAR RIGHT_PAR block
+		method_decl : modifier VOID ID LEFT_PAR formals RIGHT_PAR block
+		method_decl : modifier VOID ID LEFT_PAR RIGHT_PAR block
 	'''
 
 def p_constructor_decl(p):
 	'''
-		constructor_decl : modifier ID LEFT_PAR formals_opt RIGHT_PAR block
-	'''
-
-def p_formals_opt(p):
-	'''
-		formals_opt : empty
-		formals_opt : formals
+		constructor_decl : modifier ID LEFT_PAR RIGHT_PAR block
+		constructor_decl : modifier ID LEFT_PAR formals RIGHT_PAR block
 	'''
 
 def p_formals(p):
@@ -178,7 +169,8 @@ def p_stmt_star(p):
 
 def p_stmt(p):
 	'''
-		stmt : IF LEFT_PAR expr RIGHT_PAR stmt else_opt
+		stmt : IF LEFT_PAR expr RIGHT_PAR stmt
+		stmt : IF LEFT_PAR expr RIGHT_PAR stmt ELSE stmt
 		stmt : WHILE LEFT_PAR expr RIGHT_PAR stmt
 		stmt : FOR LEFT_PAR stmt_expr_opt SEMICOLON expr_opt SEMICOLON stmt_expr_opt RIGHT_PAR stmt
 		stmt : RETURN expr_opt SEMICOLON
@@ -188,12 +180,6 @@ def p_stmt(p):
 		stmt : block
 		stmt : var_decl
 		stmt : SEMICOLON
-	'''
-
-def p_else_opt(p):
-	'''
-		else_opt : empty
-		else_opt : ELSE stmt
 	'''
 
 ########################################################
@@ -216,15 +202,10 @@ def p_primary(p):
 		primary : THIS
 		primary : SUPER
 		primary : LEFT_PAR expr RIGHT_PAR
-		primary : NEW ID LEFT_PAR arguments_opt RIGHT_PAR
+		primary : NEW ID LEFT_PAR RIGHT_PAR
+		primary : NEW ID LEFT_PAR arguments RIGHT_PAR
 		primary : lhs
 		primary : method_invocation
-	'''
-
-def p_arguments_opt(p):
-	'''
-		arguments_opt : empty
-		arguments_opt : arguments
 	'''
 
 def p_arguments(p):
@@ -257,7 +238,8 @@ def p_array_access(p):
 
 def p_method_invocation(p):
 	'''
-		method_invocation : field_access LEFT_PAR arguments_opt RIGHT_PAR
+		method_invocation : field_access LEFT_PAR RIGHT_PAR
+		method_invocation : field_access LEFT_PAR arguments RIGHT_PAR
 	'''
 
 def p_expr(p):
@@ -286,8 +268,8 @@ def p_new_array(p):
 
 def p_array_expr_plus(p):
 	'''
-		array_expr_plus : array_expr array_expr_plus
 		array_expr_plus : array_expr
+		array_expr_plus : array_expr array_expr_plus
 	'''
 
 def p_array_expr(p):
