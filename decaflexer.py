@@ -33,95 +33,110 @@ reserved = {
 }
 
 tokens = [
-	'ID', 'COMMA',
-	'DOT', 'NUMBER',
+	'ID',
+	'COMMA', 'DOT',
+	'INT_CONST', 'FLOAT_CONST', 'STRING_CONST',
 	'EQUALS', 'SEMICOLON',
-	'STRING_CONST',
 	'LEFT_PAR', 'RIGHT_PAR',
-	'ARITH_OP', 'BOOL_OP',
-	'UNARY_OP', 'LEFT_BRACE',
-	'RIGHT_BRACE', 'PLUS_PLUS',
-	'MINUS_MINUS', 'LEFT_BRACKET',
-	'RIGHT_BRACKET'
+	'LEFT_BRACE', 'RIGHT_BRACE',
+	'LEFT_BRACKET', 'RIGHT_BRACKET',
+	'PLUS_PLUS', 'MINUS_MINUS',
+	'ARITH_OP', 'BOOL_OP', 'UNARY_OP',
+	'PLUS', 'MINUS', 'TIMES', 'DIVIDED_BY'
 ] + list(reserved.values())
 
 #Regular Expression rule
 
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
+  print("Illegal character '%s'" % t.value[0])
+  t.lexer.skip(1)
 
 def t_ID(t):
-	r'[a-zA-Z_][a-zA-Z_]*'
-	t.type = reserved.get(t.value, 'ID')
+	r'([a-zA-Z_][a-zA-Z_]*)'
 	return t
 
 def t_COMMA(t):
-	r'[,]'
-	t.type = reserved.get(t.value, 'COMMA')
+	r'([,])'
 	return t
 
 def t_SEMICOLON(t):
-	r'[;]'
-	t.type = reserved.get(t.value, 'SEMICOLON')
-	return t
-
-def t_NUMBER(t):
-	r'[+||-]*[0-9][0-9]*'
-	t.type = reserved.get(t.value, 'NUMBER')
+	r'([;])'
 	return t
 
 def t_DOT(t):
-	r'[.]'
-	t.type = reserved.get(t.value, 'DOT')
+	r'([.])'
 	return t
 
 def t_EQUALS(t):
-  	r'[\=]'
-  	return t
+	r'([=])'
+	return t
+
+def t_INT_CONST(t):
+	r'([0-9]+)'
+	return t
+
+def t_FLOAT_CONST(t):
+	r'(([0-9]+[.][0-9]+)|([0-9]*[.][0-9]+)|([0-9]+[.][0-9]*))'
+	return t
 
 def t_STRING_CONST(t):
-  	r'["][a-zA-Z_0-9 ][a-zA-Z_0-9 ]*["]'
+	r'(["][a-zA-Z_0-9 ]*["])'
 	return t
 
 def t_LEFT_PAR(t):
-	r'[(]'
+	r'([(])'
 	return t
 
 def t_RIGHT_PAR(t):
-	r'[)]'
+	r'([)])'
 	return t
 
 def t_LEFT_BRACE(t):
-	r'[{]'
+	r'([{])'
 	return t
 
 def t_RIGHT_BRACE(t):
-	r'[}]'
+	r'([}])'
 	return t
 
 def t_LEFT_BRACKET(t):
-	r'[\[]'
+	r'([\[])'
 	return t
 
 def t_RIGHT_BRACKET(t):
-	r'[\]]'
+	r'([\]])'
 	return t
 
 def t_ARITH_OP(t):
-	r'[+||-||*||/)]'
+	r'([+]|[-]|[*]|[/])'
 	return t
 
 def t_PLUS_PLUS(t):
-	r'[+][+]'
+	r'([+][+])'
 	return t
 
 def t_MINUS_MINUS(t):
-	r'[-][-]'
+	r'([-][-])'
 	return t
 
 def t_BOOL_OP(t):
-	r'[&&||\|\|||==||!=||<||>||<=||>=]'
+	r'([&][&]|[|][|]|[=][=]|[!][=]|[<]|[>]|[<][=]|[>][=])'
+	return t
+
+def t_PLUS(t):
+	r'[+]'
+	return t
+
+def t_MINUS(t):
+	r'[-]'
+	return t
+
+def t_TIMES(t):
+	r'[*]'
+	return t
+
+def t_DIVIDED_BY(t):
+	r'[/]'
 	return t
 
 t_ignore  = ' \t'
