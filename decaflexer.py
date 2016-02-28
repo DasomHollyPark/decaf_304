@@ -54,12 +54,12 @@ def t_COMMENT(t):
 	r'([/][*])(.*)([*][/])'
 	return "" # Ignore comments
 
-def t_INT_CONST(t):
-	r'([0-9]+)'
-	return t
-
 def t_FLOAT_CONST(t):
 	r'(([0-9]+[.][0-9]+)|([0-9]*[.][0-9]+)|([0-9]+[.][0-9]*))'
+	return t
+
+def t_INT_CONST(t):
+	r'([0-9]+)'
 	return t
 
 def t_STRING_CONST(t):
