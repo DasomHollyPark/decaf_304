@@ -51,7 +51,7 @@ def t_error(t):
   t.lexer.skip(1)
 
 def t_ID(t):
-	r'([a-zA-Z_][a-zA-Z_]*)'
+	r'([a-zA-Z_][a-zA-Z_0-9]*)'
 	t.type = reserved.get(t.value, 'ID')
 	return t
 
@@ -80,7 +80,7 @@ def t_FLOAT_CONST(t):
 	return t
 
 def t_STRING_CONST(t):
-	r'(["][^"]*["])'
+	r'(["]([^"])*["])'
 	return t
 
 def t_LEFT_PAR(t):

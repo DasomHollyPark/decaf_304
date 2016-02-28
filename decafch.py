@@ -10,11 +10,13 @@ if argc < 2:
 	sys.exit(1)
 
 try:
-	f = open(sys.argv[1])
-	p = yacc.yacc()
-	result = p.parse(f.read())
+	f = open(argv[1])
+	parser = yacc.yacc()
+	result = parser.parse(f.read())
 	f.close()
-	print result
+
+	if result != None:
+		print result
 	
 except EOFError:
-	print "Could not open file %s." % sys.argv[1]
+	print "Could not open file %s." % argv[1]
