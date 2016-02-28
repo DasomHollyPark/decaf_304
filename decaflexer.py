@@ -52,6 +52,7 @@ def t_error(t):
 
 def t_ID(t):
 	r'([a-zA-Z_][a-zA-Z_]*)'
+	t.type = reserved.get(t.value, 'ID')
 	return t
 
 def t_COMMA(t):
