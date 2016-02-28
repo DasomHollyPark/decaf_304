@@ -100,11 +100,11 @@ def t_RIGHT_BRACE(t):
 	return t
 
 def t_LEFT_BRACKET(t):
-	r'([\[])'
+	r'\['
 	return t
 
 def t_RIGHT_BRACKET(t):
-	r'([\]])'
+	r']'
 	return t
 
 def t_ARITH_OP(t):
@@ -120,23 +120,7 @@ def t_MINUS_MINUS(t):
 	return t
 
 def t_BOOL_OP(t):
-	r'([&][&]|[|][|]|[=][=]|[!][=]|[<]|[>]|[<][=]|[>][=])'
-	return t
-
-def t_PLUS(t):
-	r'[+]'
-	return t
-
-def t_MINUS(t):
-	r'[-]'
-	return t
-
-def t_TIMES(t):
-	r'[*]'
-	return t
-
-def t_DIVIDED_BY(t):
-	r'[/]'
+	r'(([&][&])|([|][|])|(==)|(!=)|(<=)|(>=)|(<)|(>))'
 	return t
 
 t_ignore  = ' \t\n'

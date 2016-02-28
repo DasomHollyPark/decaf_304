@@ -48,8 +48,8 @@ def p_extends(p):
 # class_body_decl+
 def p_class_body_decl_plus(p):
 	'''
-		class_body_decl_plus : class_body_decl class_body_decl_plus
 		class_body_decl_plus : class_body_decl
+		class_body_decl_plus : class_body_decl class_body_decl_plus
 	'''
 
 # class_body_decl
@@ -130,13 +130,8 @@ def p_array_dim(p):
 
 def p_method_decl(p):
 	'''
-		method_decl : modifier type_or_void ID LEFT_PAR formals_opt RIGHT_PAR block
-	'''
-
-def p_type_or_void(p):
-	'''
-		type_or_void : type
-		type_or_void : VOID
+		method_decl : modifier type ID LEFT_PAR formals_opt RIGHT_PAR block
+		method_decl : modifier VOID ID LEFT_PAR formals_opt RIGHT_PAR block
 	'''
 
 def p_constructor_decl(p):
