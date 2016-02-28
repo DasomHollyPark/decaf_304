@@ -54,6 +54,18 @@ def t_COMMENT(t):
 	r'([/][*])(.*)([*][/])'
 	return "" # Ignore comments
 
+def t_INT_CONST(t):
+	r'([0-9]+)'
+	return t
+
+def t_FLOAT_CONST(t):
+	r'(([0-9]+[.][0-9]+)|([0-9]*[.][0-9]+)|([0-9]+[.][0-9]*))'
+	return t
+
+def t_STRING_CONST(t):
+	r'(["]([^"])*["])'
+	return t
+
 def t_BOOL_OP(t):
 	r'(([&][&])|([|][|])|([=][=])|([!][=])|([<][=])|([>][=])|([<])|([>]))'
 	return t
@@ -61,6 +73,14 @@ def t_BOOL_OP(t):
 def t_ID(t):
 	r'([a-zA-Z_][a-zA-Z_0-9]*)'
 	t.type = reserved.get(t.value, 'ID')
+	return t
+
+def t_PLUS_PLUS(t):
+	r'([+][+])'
+	return t
+
+def t_MINUS_MINUS(t):
+	r'([-][-])'
 	return t
 
 def t_COMMA(t):
@@ -77,18 +97,6 @@ def t_DOT(t):
 
 def t_EQUALS(t):
 	r'([=])'
-	return t
-
-def t_INT_CONST(t):
-	r'([0-9]+)'
-	return t
-
-def t_FLOAT_CONST(t):
-	r'(([0-9]+[.][0-9]+)|([0-9]*[.][0-9]+)|([0-9]+[.][0-9]*))'
-	return t
-
-def t_STRING_CONST(t):
-	r'(["]([^"])*["])'
 	return t
 
 def t_LEFT_PAR(t):
@@ -117,14 +125,6 @@ def t_RIGHT_BRACKET(t):
 
 def t_ARITH_OP(t):
 	r'([+]|[-]|[*]|[/])'
-	return t
-
-def t_PLUS_PLUS(t):
-	r'([+][+])'
-	return t
-
-def t_MINUS_MINUS(t):
-	r'([-][-])'
 	return t
 
 t_ignore = ' \t\n'
