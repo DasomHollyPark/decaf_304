@@ -80,7 +80,7 @@ def t_FLOAT_CONST(t):
 	return t
 
 def t_STRING_CONST(t):
-	r'(["][a-zA-Z_0-9 ]*["])'
+	r'(["][^"]*["])'
 	return t
 
 def t_LEFT_PAR(t):
@@ -139,7 +139,7 @@ def t_DIVIDED_BY(t):
 	r'[/]'
 	return t
 
-t_ignore  = ' \t'
+t_ignore  = ' \t\n'
 
 lexer = lex.lex()
 

@@ -334,20 +334,19 @@ def p_expr_opt(p):
 ########################################################
 
 def p_error(p):
-#    print("Syntax error in input")
-    print("Syntax error at '%s'" % repr(p))
+	print("Syntax error at '%s'" % repr(p))
 
 ########################################################
 ###################### PARSER ##########################
 ########################################################
 
-parser = yacc.yacc()
-
-while True:
-   try:
-       s = raw_input('> ')
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   print(result)
+# parser = yacc.yacc()
+#
+# while True:
+#    try:
+#        s = raw_input('> ')
+#    except EOFError:
+#        break
+#    if not s: continue
+#    result = parser.parse(s)
+#    print(result)
