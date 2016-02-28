@@ -40,7 +40,9 @@ tokens = [
 	'LEFT_PAR', 'RIGHT_PAR',
 	'ARITH_OP', 'BOOL_OP',
 	'UNARY_OP', 'LEFT_BRACE',
-	'RIGHT_BRACE'
+	'RIGHT_BRACE', 'PLUS_PLUS',
+	'MINUS_MINUS', 'LEFT_BRACKET',
+	'RIGHT_BRACKET'
 ] + list(reserved.values())
 
 #Regular Expression rule
@@ -98,15 +100,31 @@ def t_RIGHT_BRACE(t):
 	r'[}]'
 	return t
 
+def t_LEFT_BRACKET(t):
+	r'[\[]'
+	return t
+
+def t_RIGHT_BRACKET(t):
+	r'[\]]'
+	return t
+
 def t_ARITH_OP(t):
-	r'[(+|-|*|/)]'
+	r'[+||-||*||/)]'
+	return t
+
+def t_PLUS_PLUS(t):
+	r'[+][+]'
+	return t
+
+def t_MINUS_MINUS(t):
+	r'[-][-]'
 	return t
 
 def t_BOOL_OP(t):
-	r'[&&||||||==||!=||<||>||<=||>=]'
+	r'[&&||\|\|||==||!=||<||>||<=||>=]'
 	return t
-t_ignore  = ' \t'
 
+t_ignore  = ' \t'
 
 lexer = lex.lex()
 

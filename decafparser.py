@@ -81,13 +81,75 @@ def p_stmts(p):
 
 def p_stmt(p):
 	'''
-		stmt : SEMICOLON
+		stmt : IF LEFT_PAR expr RIGHT_PAR stmt else_stmt
+				 | WHILE LEFT_PAR expr RIGHT_PAR stmt
+				 | FOR LEFT_PAR stmt_expr SEMICOLON expr SEMICOLON stmt_expr RIGHT_PAR stmt
+				 | RETURN expr SEMICOLON
+				 | stmt_expr SEMICOLON
+				 | BREAK SEMICOLON
+				 | CONTINUE SEMICOLON
+				 | block
+				 | var_decl
+				 | SEMICOLON
+	'''
+
+def p_stmt_expr(p):
+	'''
+		stmt_expr : assign
+						  | method_invocation
+	'''
+
+def p_assign(p):
+	'''
+		assign : lhs EQUALS expr
+					 | lhs PLUS_PLUS
+					 | PLUS_PLUS lhs
+					 | lhs MINUS_MINUS
+					 | MINUS_MINUS lhs
+	'''
+
+def p_else_stmt(p):
+	'''
+		else_stmt : 
+		else_stmt : ELSE stmt
 	'''
 
 def p_stmt2(p):
 	'''
 		stmt2 : stmts
 		stmt2 : 
+	'''
+
+def p_expr(p):
+	'''
+		expr : primary
+				 | assign
+				 | new_array
+				 | expr ARITH_OP expr
+				 | expr BOOL_OP expr
+				 | UNARY_OP expr
+	'''
+
+def p_new_array(p):
+	'''
+		new_array : NEW type array_d array_e
+	'''
+
+def p_array_d(p):
+	'''
+		array_d : LEFT_BRACKET expr RIGHT_BRACKET array_d2 array_e
+	'''
+
+def p_array_d2(p):
+	'''
+		array_d2 : LEFT_BRACKET expr RIGHT_BRACKET array_d2
+		array_d2 : 
+	'''
+
+def p_array_e(p):
+	'''
+		array_e : LEFT_BRACKET RIGHT_BRACKET array_e
+		array_e : 
 	'''
 
 #constructor_decl ::= modifier id (formals) block
